@@ -1,0 +1,72 @@
+,word,name,type,line
+0,bool,T_Bool,keyword,0
+1,int,T_Int,keyword,0
+2,char,T_Char,keyword,0
+3,false,T_False,keyword,0
+4,true,T_True,keyword,0
+5,break,T_Break,keyword,0
+6,else,T_Else,keyword,0
+7,if,T_If,keyword,0
+8,print,T_Print,keyword,0
+9,return,T_Return,keyword,0
+10,contintue,T_Contintue,keyword,0
+11,for,T_For,keyword,0
+12,test_function,T_Id,id,1
+13,a,T_Id,id,1
+14,b,T_Id,id,1
+15,c,T_Id,id,1
+16,c,T_Id,id,2
+17,a,T_Id,id,3
+18,b,T_Id,id,3
+19,a,T_Id,id,5
+20,b,T_Id,id,5
+21,main,T_Id,id,9
+22,add,T_Id,id,10
+23,_assign1,T_Id,id,11
+24,String_1,T_Id,id,12
+25,""" + """,T_String,String,12
+26,String_2,T_Id,id,13
+27,""" - """,T_String,String,13
+28,_num1,T_Id,id,14
+29,_num2,T_Id,id,15
+30,_result,T_Id,id,16
+31,i,T_Id,id,18
+32,i,T_Id,id,18
+33,num1,T_Id,id,18
+34,i,T_Id,id,18
+35,i,T_Id,id,18
+36,j,T_Id,id,19
+37,j,T_Id,id,19
+38,num2,T_Id,id,19
+39,j,T_Id,id,19
+40,j,T_Id,id,19
+41,_result,T_Id,id,20
+42,i,T_Id,id,20
+43,j,T_Id,id,20
+44,"""Result: """,T_String,String,21
+45,"""Result: ""result",T_Id,id,21
+46,add,T_Id,id,25
+47,i,T_Id,id,26
+48,i,T_Id,id,26
+49,i,T_Id,id,26
+50,i,T_Id,id,26
+51,j,T_Id,id,27
+52,j,T_Id,id,27
+53,j,T_Id,id,27
+54,j,T_Id,id,27
+55,i,T_Id,id,28
+56,i,T_Id,id,28
+57,continue,T_Id,id,29
+58,j,T_Id,id,30
+59,i,T_Id,id,30
+60,_result,T_Id,id,32
+61,i,T_Id,id,32
+62,j,T_Id,id,32
+63,"""Result: """,T_String,String,33
+64,"""Result: ""_result",T_Id,id,33
+65,"""Test string with escaped characters: """,T_String,String,37
+66,"""\n newline, \t tab, \r carriage return.""",T_String,String,38
+67,"""this is"" a whole string no other token like '=' or 'else' or even \\\comment should be recognized""",T_String,String,40
+68,back,T_Id,id,41
+69,quote,T_Id,id,42
+70,_123,T_Id,id,43
