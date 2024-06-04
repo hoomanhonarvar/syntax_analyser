@@ -23,13 +23,13 @@ If the input encounters an error, the compiler must use error recovery methods
 * run lexeme analyser 
   
 ```
-python lexeme.py file.pl
+lexeme.py file.pl
 ```
 * new output should be smt like token_list.txt and dataFrame of main_symbol_table
 
 * now run 
 ```
-python syntax_analyser.py tokne_list.txt main_symbol_table.pkl
+syntax_analyser.py tokne_list.txt main_symbol_table.pkl
 ```
 
 
