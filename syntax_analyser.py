@@ -1,16 +1,66 @@
-# This is a sample Python script.
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+def first(grammar):
+    first = {}
+
+    for non_terminal in grammar:
+        first[non_terminal] = set()
+
+    while True:
+        updated = False
+        for non_terminal, productions in grammar.items():
+            for production in productions:
+                for symbol in production:
+                    if symbol in first:
+                        if len(first[symbol] - first[non_terminal]) > 0:
+                            first[non_terminal] |= first[symbol]
+                            updated = True
+                        if 'ε' not in first[symbol]:
+                            break
+                else:
+                    first[non_terminal].add('ε')
+                    updated = True
+
+        if not updated:
+            break
+
+    return first
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+def follow(grammar, first):
+    follow = {non_terminal: set() for non_terminal in grammar}
 
+    start_symbol = next(iter(grammar))
+    follow[start_symbol].add('$')
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+    while True:
+        updated = False
+        for non_terminal, productions in grammar.items():
+            for production in productions:
+                for i, symbol in enumerate(production):
+                    if symbol in grammar:
+                        for j in range(i + 1, len(production)):
+                            if production[j] in grammar:
+                                if len(first[production[j]] - {'ε'}) > 0:
+                                    if len(follow[production[j]] - follow[symbol]) > 0:
+                                        follow[symbol] |= follow[production[j]]
+                                        updated = True
+                                    break
+                                else:
+                                    if len(follow[production[j]] - follow[symbol]) > 0:
+                                        follow[symbol] |= follow[production[j]] - {'ε'}
+                                        updated = True
+                            else:
+                                if len(follow[symbol] - follow[production[j]]) > 0:
+                                    follow[production[j]] |= follow[symbol] - follow[production[j]]
+                                    updated = True
+                                break
+                        else:
+                            if len(follow[non_terminal] - follow[symbol]) > 0:
+                                follow[symbol] |= follow[non_terminal]
+                                updated = True
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+        if not updated:
+            break
+
+    return follow
+
