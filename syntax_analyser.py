@@ -1,10 +1,13 @@
+import pandas as pd
 class Grammar:
-  def __init__(self, productions, terminals, non_terminals):
+  def __init__(self, productions, terminals, non_terminals,start_variable):
     self.productions = productions
     self.terminals = terminals
     self.non_terminals = non_terminals
     self.first = {}
     self.follow = {}
+    self.start_variable=start_variable
+    self.sparse_table=pd.DataFrame()
 
   def calculate_first(self):
     for non_terminal in self.non_terminals:
@@ -35,7 +38,7 @@ class Grammar:
   def calculate_follow(self):
     for non_terminal in self.non_terminals:
       self.follow[non_terminal] = set()
-    self.follow['E'].add('$')
+    self.follow[self.start_variable].add('$')
     updated = True
     while updated:
         updated=False
@@ -77,12 +80,35 @@ class Grammar:
   def print_follow(self):
     for non_terminal, follow_set in self.follow.items():
       print(f"Follow({non_terminal}) = {', '.join(follow_set)}")
-#
-#
-# S -> ACB | Cbb | Ba
-# A -> da | BC
-# B -> g | ?
-# C -> h | ?
+
+  def first_product(self,production):
+      first=set()
+      for symbol in production:
+          if symbol in self.non_terminals:
+              first|=self.first[symbol]
+              if 'ε' not in self.first[symbol]:
+                  break
+              else:
+                  first.add("ε")
+          else:
+              first.add(symbol)
+              break
+      return first
+
+  def fill_sparse_table(self):
+      temp=self.terminals
+      temp.remove("ε")
+      temp.add("$")
+      self.sparse_table = pd.DataFrame(index=list(self.non_terminals), columns=list(temp))
+      for non_terminal, productions in self.productions.items():
+          for production in productions:
+                for a in self.first_product(production):
+                    if a!="ε":
+                        self.sparse_table.at[non_terminal,a]=production
+                if production==["ε"]:
+                    for j in self.follow[non_terminal]:
+                        self.sparse_table.at[non_terminal,j]=production
+
 grammar = Grammar({
     "E": [["T", "E'"]],
     "E'": [["+","T","E'"], ["ε"]],
@@ -91,14 +117,15 @@ grammar = Grammar({
     "F":[["(","E",")"],["id"]],
 
 
-},{"id","+","*","(",")","ε"},{"E","E'","T","T'","F"})
+},{"id","+","*","(",")","ε"},{"E","E'","T","T'","F"},"E")
 grammar.calculate_first()
 grammar.print_first()
 
 grammar.calculate_follow()
-
 grammar.print_follow()
 
+grammar.fill_sparse_table()
+print(grammar.sparse_table)
 
 
 
