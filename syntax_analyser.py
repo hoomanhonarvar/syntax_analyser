@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 class Grammar:
   def __init__(self, productions, terminals, non_terminals,start_variable):
     self.productions = productions
@@ -108,6 +109,11 @@ class Grammar:
                 if production==["ε"]:
                     for j in self.follow[non_terminal]:
                         self.sparse_table.at[non_terminal,j]=production
+      #panic mode
+      for non_terminal in self.non_terminals:
+          for follow in self.follow[non_terminal]:
+              if pd.isna(self.sparse_table[follow][non_terminal]):
+                  self.sparse_table.at[non_terminal,follow]="Sync"
 
 grammar = Grammar({
     "E": [["T", "E'"]],
