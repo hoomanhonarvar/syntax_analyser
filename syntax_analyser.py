@@ -50,7 +50,7 @@ class Grammar:
                         for j in range(i + 1, len(production)):
                             if production[j] in self.non_terminals :
                                 if 'ε' not in self.first[production[j]]:
-                                    if self.first[production[j]] not in self.follow[symbol]:
+                                    if not self.first[production[j]].issubset(self.follow[symbol]):
                                         self.follow[symbol] |= self.first[production[j]]
                                         updated = True
                                         break
@@ -97,13 +97,16 @@ class Grammar:
       return first
 
   def fill_sparse_table(self):
+
       temp=self.terminals
       temp.remove("ε")
       temp.add("$")
       self.sparse_table = pd.DataFrame(index=list(self.non_terminals), columns=list(temp))
+      print(self.sparse_table)
       for non_terminal, productions in self.productions.items():
           for production in productions:
                 for a in self.first_product(production):
+
                     if a!="ε":
                         self.sparse_table.at[non_terminal,a]=production
                 if production==["ε"]:
@@ -112,18 +115,62 @@ class Grammar:
       #panic mode
       for non_terminal in self.non_terminals:
           for follow in self.follow[non_terminal]:
-              if pd.isna(self.sparse_table[follow][non_terminal]):
+              if type(self.sparse_table[follow][non_terminal])!="<class 'list'>":
                   self.sparse_table.at[non_terminal,follow]="Sync"
 
 grammar = Grammar({
-    "E": [["T", "E'"]],
-    "E'": [["+","T","E'"], ["ε"]],
-    "T": [["F","T'"]],
-    "T'": [["*","F","T'"], ["ε"]],
-    "F":[["(","E",")"],["id"]],
+    "Program": [["FunctionDeclarations", "Declarations","Statements"]],
+    "FunctionDeclarations": [["FunctionDeclaration","FunctionDeclarations"], ["ε"]],
+    "FunctionDeclaration": [["Type","T_Id","T_LP","ParameterList","T_RP","Block"]],
+    "ParameterList": [["Parameter", "ParameterListPrime"], ["ε"]],
+    "ParameterListPrime": [["T_Comma", "Parameter","ParameterListPrime"], ["ε"]],
+    "Parameter": [["Type", "T_Id","ArraySpecifier"]],
+    "Declarations": [["Declaration", "Declarations"], ["ε"]],
+    "Declaration": [["Type", "T_Id","ArraySpecifier","AssignmentPrime","T_Semicolon"]],
+    "AssignmentPrime": [["T_Assign","Expression"],["ε"]],
+    "Type": [["T_Int"], ["T_Bool"],["T_Char"]],
+    "ArraySpecifier": [["T_LB", "Num","T_RB","ArraySpecifier"], ["ε"]],
+    "Num":[["T_Decimal"],["T_Hexadecimal"]],
+    "Statements": [["Statement", "Statements"], ["ε"]],
+    "Statement": [["Assignment", "T_Semicolon"], ["PrintStatement","T_Semicolon"],["Loop"],["IfStatement"],["Block"],["T_Continue","T_Semicolon"],["T_Break","T_Semicolon"],["T_Return","Expression","T_Semicolon"],["FunctionCall","T_Semicolon"]],
+    "Assignment": [["T_Id", "T_Assign","Expression"]],
+    "PrintStatement": [["T_Print", "T_LP","FormattingString","T_RP"]],
+    "FormattingString": [["T_String", "ExpressionList"]],
+    "ExpressionList": [["T_Comma", "Expression"], ["ε"]],
+    "Loop": [["T_For", "T_LP","Assignment","T_Semicolon","Condition","T_Semicolon","Assignment","T_RP","Statement"]],
+    "IfStatement": [["T_If", "T_LP","Condition","T_RP","Statement","ElsePart"]],
+    "ElsePart": [["T_Else", "Statement"], ["ε"]],
+    "Block": [["T_LC", "Statement","T_RC"]],
+    "Condition": [["Expression", "ConditionPrime"],["RO_Expression"]],
+    "RO_Expression":[["Expression","T_ROp","Expression"]],
+    "T_ROp":[["T_ROp_NE"],["T_ROp_E"],["T_ROp_L"],["T_ROp_G"],["T_ROp_LE"],["T_ROp_GE"]],
+    "ConditionPrime": [["T_LOp", "Expression","ConditionPrime"], ["ε"]],
+    "T_LOp":[["T_LOp_AND"],["T_LOp_OR"]],
+    "Expression": [["Term", "ExpressionPrime"]],
+    "ExpressionPrime": [["T_AOp_PL", "Term","ExpressionPrime"],["T_AOp_MN", "Term","ExpressionPrime"], ["ε"]],
+    "Term": [["Factor", "TermPrime"]],
+    "TermPrime": [["Aop", "Factor","TermPrime"], ["ε"]],
+    "Aop":[["T_AOp_DV"],["T_AOp_ML"],["T_AOp_RM"]],
+    "Factor": [["T_Id"], ["T_Decimal"], ["T_Hexadecimal"], ["T_Character"], ["T_String"], ["T_True"], ["T_False"], ["T_LOp_NOT","Factor"], ["T_LP","Expression","T_RP"], ["FunctionCall"]],
+    "FunctionCall": [["T_Id", "T_LP","ArgumentList","T_RP"], ["ε"]],
+    "ArgumentList": [["Expression", "ArgumentListPrime"], ["ε"]],
+    "ArgumentListPrime": [["T_Comma", "Expression","ArgumentListPrime"], ["ε"]],
 
-
-},{"id","+","*","(",")","ε"},{"E","E'","T","T'","F"},"E")
+},{"T_Id","T_Decimal","T_Hexadecimal","T_Character","T_String","ε",
+   "T_ROp_NE","T_ROp_E","T_LOp_AND","T_LOp_OR","T_LOp_NOT","T_Assign",
+   "T_LP","T_RP","T_LB","T_RB","T_LC","T_RC","T_Semicolon","T_Comma","T_Bool",
+   "T_Break","T_Char","T_Continue","T_Else","T_False","T_For","T_If","T_Int",
+   "T_Print","T_Return","T_True","T_AOp_PL","T_AOp_MN","T_AOp_ML","T_AOp_DV",
+   "T_AOp_RM","T_ROp_L","T_ROp_G","T_ROp_LE","T_ROp_GE"}
+    ,{"Program","FunctionDeclarations","FunctionDeclaration","Statement",
+      "ParameterList","ParameterListPrime","Parameter","Declarations","Declaration",
+      "AssignmentPrime","Type","ArraySpecifier","Num","Statements","Assignment",
+      "PrintStatement","FormattingString","ExpressionList","Loop","IfStatement",
+      "ElsePart","Block","Condition","RO_Expression","T_ROp","ConditionPrime",
+      "T_LOp","Expression","ExpressionPrime","Term","TermPrime","Aop","Factor",
+      "FunctionCall","ArgumentList","ArgumentListPrime"}
+    ,"Program")
+print(type(['salam']),type(np.nan),type(['salam',"sdfkj"]))
 grammar.calculate_first()
 grammar.print_first()
 
