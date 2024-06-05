@@ -1,66 +1,118 @@
+class Grammar:
+  def __init__(self, productions, terminals, non_terminals):
+    self.productions = productions
+    self.terminals = terminals
+    self.non_terminals = non_terminals
+    self.first = {}
+    self.follow = {}
 
-def first(grammar):
-    first = {}
-
-    for non_terminal in grammar:
-        first[non_terminal] = set()
-
-    while True:
+  def calculate_first(self):
+    for non_terminal in self.non_terminals:
+      self.first[non_terminal] = set()
+    updated=True
+    while updated:
         updated = False
-        for non_terminal, productions in grammar.items():
+        for non_terminal, productions in self.productions.items():
             for production in productions:
+                # print(production)
                 for symbol in production:
-                    if symbol in first:
-                        if len(first[symbol] - first[non_terminal]) > 0:
-                            first[non_terminal] |= first[symbol]
+                    if symbol in self.non_terminals :
+                        if not (self.first[symbol].issubset(self.first[non_terminal])) :
+                            self.first[non_terminal] |= self.first[symbol]
                             updated = True
-                        if 'ε' not in first[symbol]:
+                        if 'ε' not in self.first[symbol]:
                             break
-                else:
-                    first[non_terminal].add('ε')
-                    updated = True
+                        else:
+                            if "ε" not in self.first[non_terminal]:
+                                self.first[non_terminal].add('ε')
+                                updated = True
+                    else:
+                        if symbol not in self.first[non_terminal]:
+                            self.first[non_terminal].add(symbol)
+                            updated=True
+                        break
 
-        if not updated:
-            break
-
-    return first
-
-
-def follow(grammar, first):
-    follow = {non_terminal: set() for non_terminal in grammar}
-
-    start_symbol = next(iter(grammar))
-    follow[start_symbol].add('$')
-
-    while True:
-        updated = False
-        for non_terminal, productions in grammar.items():
+  def calculate_follow(self):
+    for non_terminal in self.non_terminals:
+      self.follow[non_terminal] = set()
+    self.follow['E'].add('$')
+    updated = True
+    while updated:
+        updated=False
+        for non_terminal, productions in self.productions.items():
             for production in productions:
                 for i, symbol in enumerate(production):
-                    if symbol in grammar:
+                    if symbol in self.non_terminals:
                         for j in range(i + 1, len(production)):
-                            if production[j] in grammar:
-                                if len(first[production[j]] - {'ε'}) > 0:
-                                    if len(follow[production[j]] - follow[symbol]) > 0:
-                                        follow[symbol] |= follow[production[j]]
+                            if production[j] in self.non_terminals :
+                                if 'ε' not in self.first[production[j]]:
+                                    if self.first[production[j]] not in self.follow[symbol]:
+                                        self.follow[symbol] |= self.first[production[j]]
                                         updated = True
-                                    break
+                                        break
                                 else:
-                                    if len(follow[production[j]] - follow[symbol]) > 0:
-                                        follow[symbol] |= follow[production[j]] - {'ε'}
+                                    if not (self.first[production[j]] - {'ε'}).issubset(self.follow[symbol]) :
+                                        self.follow[symbol] |= self.first[production[j]] - {'ε'}
                                         updated = True
+
+                                    if j == len(production) - 1:
+                                        if not self.follow[non_terminal].issubset(self.follow[symbol]):
+                                            self.follow[symbol] |= self.follow[non_terminal]
+                                            updated = True
                             else:
-                                if len(follow[symbol] - follow[production[j]]) > 0:
-                                    follow[production[j]] |= follow[symbol] - follow[production[j]]
-                                    updated = True
-                                break
-                        else:
-                            if len(follow[non_terminal] - follow[symbol]) > 0:
-                                follow[symbol] |= follow[non_terminal]
+                                if production[j] not in self.follow[symbol]:
+                                    self.follow[symbol].add(production[j])
+                                    updated=True
+                                    break
+                    if i == len(production)-1:
+                        if symbol in self.non_terminals:
+                            if not self.follow[non_terminal].issubset(self.follow[symbol]):
+                                self.follow[symbol] |= self.follow[non_terminal]
                                 updated = True
 
-        if not updated:
-            break
+  def print_first(self):
+    for non_terminal, first_set in self.first.items():
+      print(f"First({non_terminal}) = {', '.join(first_set)}")
 
-    return follow
+  def print_follow(self):
+    for non_terminal, follow_set in self.follow.items():
+      print(f"Follow({non_terminal}) = {', '.join(follow_set)}")
+#
+#
+# S -> ACB | Cbb | Ba
+# A -> da | BC
+# B -> g | ?
+# C -> h | ?
+grammar = Grammar({
+    "E": [["T", "E'"]],
+    "E'": [["+","T","E'"], ["ε"]],
+    "T": [["F","T'"]],
+    "T'": [["*","F","T'"], ["ε"]],
+    "F":[["(","E",")"],["id"]],
+
+
+},{"id","+","*","(",")","ε"},{"E","E'","T","T'","F"})
+grammar.calculate_first()
+grammar.print_first()
+
+grammar.calculate_follow()
+
+grammar.print_follow()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
