@@ -1,470 +1,298 @@
-1 :T_Bool
+1 :T_Int
 1 :T_Whitespace
-1 :12 test_function
+1 :12 main
 1 :T_LP
-1 :T_Int
-1 :T_Whitespace
-1 :13 a
-1 :T_Comma
-1 :T_Whitespace
-1 :T_Int
-1 :T_Whitespace
-1 :14 b
-1 :T_Comma
-1 :T_Whitespace
-1 :T_Bool
-1 :T_Whitespace
-1 :15 c
 1 :T_RP
 1 :T_Whitespace
 1 :T_LC
 1 :T_Whitespace
 2 :T_Whitespace
-2 :T_If
+2 :T_For
 2 :T_Whitespace
 2 :T_LP
-2 :16 c
+2 :T_Int
 2 :T_Whitespace
-2 :T_ROp_E
+2 :13 j
 2 :T_Whitespace
-2 :T_True
+2 :T_Assign
+2 :T_Whitespace
+2 :T_Decimal 0
+2 :T_Whitespace
+2 :T_Semicolon
+2 :T_Whitespace
+2 :14 j
+2 :T_Whitespace
+2 :T_ROp_NE
+2 :T_Whitespace
+2 :15 num2
+2 :T_Whitespace
+2 :T_AOp_ML
+2 :T_Whitespace
+2 :T_Decimal -1
+2 :T_Semicolon
+2 :T_Whitespace
+2 :16 j
+2 :T_Whitespace
+2 :T_Assign
+2 :T_Whitespace
+2 :17 j
+2 :T_Whitespace
+2 :T_AOp_MN
+2 :T_Whitespace
+2 :T_Decimal 1
 2 :T_RP
 2 :T_Whitespace
 2 :T_LC
 2 :T_Whitespace
 3 :T_Whitespace
-3 :T_Return
+3 :18 _result
 3 :T_Whitespace
-3 :17 a
+3 :T_Assign
+3 :T_Whitespace
+3 :19 i
 3 :T_Whitespace
 3 :T_AOp_PL
 3 :T_Whitespace
-3 :18 b
+3 :20 j
 3 :T_Semicolon
 3 :T_Whitespace
 4 :T_Whitespace
-4 :T_RC
+4 :T_Print
+4 :T_LP
+4 :T_String  "Result: "
+4 :T_Comma
 4 :T_Whitespace
-4 :T_Else
+4 :22 "Result: "result
+4 :T_RP
+4 :T_Semicolon
 4 :T_Whitespace
-4 :T_LC
-4 :T_Whitespace
 5 :T_Whitespace
-5 :T_Return
-5 :T_Whitespace
-5 :19 a
-5 :T_Whitespace
-5 :T_AOp_MN
-5 :T_Whitespace
-5 :20 b
-5 :T_Semicolon
+5 :T_RC
 5 :T_Whitespace
 6 :T_Whitespace
-6 :T_RC
-6 :T_Whitespace
-7 :T_RC
 7 :T_Whitespace
 8 :T_Whitespace
+8 :23 add
+8 :T_Whitespace
+8 :T_Assign
+8 :T_Whitespace
+8 :T_False
+8 :T_Semicolon
+8 :T_Whitespace
+9 :T_Whitespace
+9 :T_For
+9 :T_Whitespace
+9 :T_LP
 9 :T_Int
 9 :T_Whitespace
-9 :21 main
+9 :24 i
+9 :T_Whitespace
+9 :T_Assign
+9 :T_Whitespace
+9 :T_Semicolon
+9 :T_Whitespace
+9 :T_LOp_NOT
 9 :T_LP
+9 :25 i
+9 :T_Whitespace
+9 :T_ROp_E
+9 :T_Whitespace
+9 :T_Decimal 5
+9 :T_RP
+9 :T_Semicolon
+9 :T_Whitespace
+9 :26 i
+9 :T_Whitespace
+9 :T_Assign
+9 :T_Whitespace
+9 :27 i
+9 :T_Whitespace
+9 :T_AOp_PL
+9 :T_Whitespace
+9 :T_Decimal 1
 9 :T_RP
 9 :T_Whitespace
 9 :T_LC
 9 :T_Whitespace
 10 :T_Whitespace
-10 :T_Bool
+10 :T_For
 10 :T_Whitespace
-10 :22 add
+10 :T_LP
+10 :T_Int
+10 :T_Whitespace
+10 :28 j
 10 :T_Whitespace
 10 :T_Assign
 10 :T_Whitespace
-10 :T_True
+10 :T_Decimal 0
+10 :T_Whitespace
 10 :T_Semicolon
 10 :T_Whitespace
+10 :29 j
+10 :T_Whitespace
+10 :T_ROp_LE
+10 :T_Whitespace
+10 :T_Decimal -5
+10 :T_Semicolon
+10 :T_Whitespace
+10 :30 j
+10 :T_Whitespace
+10 :T_Assign
+10 :T_Whitespace
+10 :31 j
+10 :T_Whitespace
+10 :T_AOp_MN
+10 :T_Whitespace
+10 :T_Decimal 1
+10 :T_RP
+10 :T_Whitespace
+10 :T_LC
+10 :T_Whitespace
 11 :T_Whitespace
-11 :T_Char
+11 :T_If
 11 :T_Whitespace
-11 :23 _assign1
+11 :T_LP
+11 :T_LP
+11 :32 i
 11 :T_Whitespace
-11 :T_Assign
+11 :T_AOp_RM
 11 :T_Whitespace
-11 :T_Character: '='
-11 :T_Semicolon
+11 :T_Decimal 4
+11 :T_RP
+11 :T_Whitespace
+11 :T_ROp_E
+11 :T_Whitespace
+11 :T_Decimal 0
+11 :T_Whitespace
+11 :T_LOp_OR
+11 :T_Whitespace
+11 :T_LP
+11 :33 i
+11 :T_Whitespace
+11 :T_AOp_RM
+11 :T_Whitespace
+11 :T_Decimal 3
+11 :T_RP
+11 :T_Whitespace
+11 :T_ROp_E
+11 :T_Whitespace
+11 :T_Decimal 0
+11 :T_Whitespace
+11 :T_RP
 11 :T_Whitespace
 12 :T_Whitespace
-12 :T_Char
-12 :T_Whitespace
-12 :24 String_1
-12 :T_LB
-12 :T_RB
-12 :T_Whitespace
-12 :T_Assign
-12 :T_Whitespace
-12 :T_String  " + "
+12 :34 continue
 12 :T_Semicolon
 12 :T_Whitespace
 13 :T_Whitespace
-13 :T_Char
+13 :T_If
 13 :T_Whitespace
-13 :26 String_2
-13 :T_LB
-13 :T_RB
+13 :T_LP
+13 :35 j
 13 :T_Whitespace
-13 :T_Assign
+13 :T_ROp_G
 13 :T_Whitespace
-13 :T_String  " - "
-13 :T_Semicolon
+13 :T_Decimal -4
+13 :T_Whitespace
+13 :T_LOp_AND
+13 :T_Whitespace
+13 :36 i
+13 :T_Whitespace
+13 :T_ROp_L
+13 :T_Whitespace
+13 :T_Decimal 3
+13 :T_RP
 13 :T_Whitespace
 14 :T_Whitespace
-14 :T_Int
-14 :T_Whitespace
-14 :28 _num1
-14 :T_Whitespace
-14 :T_Assign
-14 :T_Whitespace
-14 :T_Decimal10
+14 :T_Break
 14 :T_Semicolon
 14 :T_Whitespace
 15 :T_Whitespace
-15 :T_Int
-15 :T_Whitespace
-15 :29 _num2
+15 :37 _result
 15 :T_Whitespace
 15 :T_Assign
 15 :T_Whitespace
-15 :T_Decimal 5
+15 :38 i
+15 :T_Whitespace
+15 :T_AOp_MN
+15 :T_Whitespace
+15 :39 j
 15 :T_Semicolon
 15 :T_Whitespace
 16 :T_Whitespace
-16 :T_Int
+16 :T_Print
+16 :T_LP
+16 :T_String  "Result: "
+16 :T_Comma
 16 :T_Whitespace
-16 :30 _result
-16 :T_Whitespace
-16 :T_Assign
-16 :T_Whitespace
+16 :41 "Result: "_result
+16 :T_RP
 16 :T_Semicolon
 16 :T_Whitespace
 17 :T_Whitespace
+17 :T_RC
+17 :T_Whitespace
 18 :T_Whitespace
-18 :T_For
+18 :T_RC
 18 :T_Whitespace
-18 :T_LP
-18 :T_Int
-18 :T_Whitespace
-18 :31 i
-18 :T_Whitespace
-18 :T_Assign
-18 :T_Whitespace
-18 :T_Semicolon
-18 :T_Whitespace
-18 :32 i
-18 :T_Whitespace
-18 :T_Assign
-18 :T_Whitespace
-18 :33 num1
-18 :T_Whitespace
-18 :T_AOp_DV
-18 :T_Whitespace
-18 :T_Decimal 2
-18 :T_Semicolon
-18 :T_Whitespace
-18 :34 i
-18 :T_Whitespace
-18 :T_Assign
-18 :T_Whitespace
-18 :35 i
-18 :T_Whitespace
-18 :T_AOp_PL
-18 :T_Whitespace
-18 :T_Decimal 1
-18 :T_RP
-18 :T_Whitespace
-18 :T_LC
-18 :T_Whitespace
-19 :T_Whitespace
-19 :T_For
-19 :T_Whitespace
-19 :T_LP
-19 :T_Int
-19 :T_Whitespace
-19 :36 j
-19 :T_Whitespace
-19 :T_Assign
-19 :T_Whitespace
-19 :T_Semicolon
-19 :T_Whitespace
-19 :37 j
-19 :T_Whitespace
-19 :T_LOp_NOT
-19 :T_Assign
-19 :T_Whitespace
-19 :38 num2
-19 :T_Whitespace
-19 :T_AOp_ML
-19 :T_Whitespace
-19 :T_Decimal-1
-19 :T_Semicolon
-19 :T_Whitespace
-19 :39 j
-19 :T_Whitespace
-19 :T_Assign
-19 :T_Whitespace
-19 :40 j
-19 :T_Whitespace
-19 :T_AOp_MN
-19 :T_Whitespace
-19 :T_Decimal 1
-19 :T_RP
-19 :T_Whitespace
-19 :T_LC
 19 :T_Whitespace
 20 :T_Whitespace
-20 :41 _result
-20 :T_Whitespace
-20 :T_Assign
-20 :T_Whitespace
-20 :42 i
-20 :T_Whitespace
-20 :T_AOp_PL
-20 :T_Whitespace
-20 :43 j
+20 :T_Print
+20 :T_LP
+20 :T_String  "Test string with escaped characters: "
+20 :T_RP
 20 :T_Semicolon
 20 :T_Whitespace
 21 :T_Whitespace
 21 :T_Print
 21 :T_LP
-21 :T_String  "Result: "
-21 :T_Comma
-21 :T_Whitespace
-21 :45 "Result: "result
+21 :T_String  "\n newline, \t tab, \r carriage return."
 21 :T_RP
 21 :T_Semicolon
 21 :T_Whitespace
 22 :T_Whitespace
-22 :T_RC
-22 :T_Whitespace
 23 :T_Whitespace
-23 :T_RC
+23 :T_Print
+23 :T_LP
+23 :T_String  "this is" a whole string no other token like '=' or 'else' or even \\\comment should be recognized"
+23 :T_RP
+23 :T_Semicolon
 23 :T_Whitespace
 24 :T_Whitespace
+24 :T_Char
+24 :T_Whitespace
+24 :45 back
+24 :T_Whitespace
+24 :T_Assign
+24 :T_Whitespace
+24 :T_Character: '\\';
+24 :T_Whitespace
 25 :T_Whitespace
-25 :46 add
+25 :T_Char
+25 :T_Whitespace
+25 :46 quote
 25 :T_Whitespace
 25 :T_Assign
 25 :T_Whitespace
-25 :T_False
-25 :T_Semicolon
+25 :T_Character: '\'';
 25 :T_Whitespace
 26 :T_Whitespace
-26 :T_For
-26 :T_Whitespace
-26 :T_LP
 26 :T_Int
 26 :T_Whitespace
-26 :47 i
+26 :47 _123
 26 :T_Whitespace
 26 :T_Assign
 26 :T_Whitespace
+26 :T_Hexadecimal 0xABCdef1230
 26 :T_Semicolon
 26 :T_Whitespace
-26 :T_LP
-26 :48 i
-26 :T_Whitespace
-26 :T_ROp_E
-26 :T_Whitespace
-26 :T_Decimal 5
-26 :T_RP
-26 :T_Semicolon
-26 :T_Whitespace
-26 :49 i
-26 :T_Whitespace
-26 :T_Assign
-26 :T_Whitespace
-26 :50 i
-26 :T_Whitespace
-26 :T_AOp_PL
-26 :T_Whitespace
-26 :T_Decimal 1
-26 :T_RP
-26 :T_Whitespace
-26 :T_LC
-26 :T_Whitespace
-27 :T_Whitespace
-27 :T_For
-27 :T_Whitespace
-27 :T_LP
-27 :T_Int
-27 :T_Whitespace
-27 :51 j
-27 :T_Whitespace
-27 :T_Assign
-27 :T_Whitespace
-27 :T_Semicolon
-27 :T_Whitespace
-27 :52 j
-27 :T_Whitespace
-27 :T_ROp_L
-27 :T_Assign
-27 :T_Whitespace
-27 :T_Decimal-5
-27 :T_Semicolon
-27 :T_Whitespace
-27 :53 j
-27 :T_Whitespace
-27 :T_Assign
-27 :T_Whitespace
-27 :54 j
-27 :T_Whitespace
-27 :T_AOp_MN
-27 :T_Whitespace
-27 :T_Decimal 1
-27 :T_RP
-27 :T_Whitespace
-27 :T_LC
 27 :T_Whitespace
 28 :T_Whitespace
-28 :T_If
-28 :T_Whitespace
-28 :T_LP
-28 :T_LP
-28 :55 i
-28 :T_Whitespace
-28 :T_AOp_RM
-28 :T_Whitespace
-28 :T_Decimal 4
-28 :T_RP
-28 :T_Whitespace
-28 :T_ROp_E
+28 :T_Return
 28 :T_Whitespace
 28 :T_Decimal 0
 28 :T_Whitespace
-28 :T_LOp_OR
+28 :T_Semicolon
 28 :T_Whitespace
-28 :T_LP
-28 :56 i
-28 :T_Whitespace
-28 :T_AOp_RM
-28 :T_Whitespace
-28 :T_Decimal 3
-28 :T_RP
-28 :T_Whitespace
-28 :T_ROp_E
-28 :T_Whitespace
-28 :T_RP
-28 :T_Whitespace
+29 :T_RC
 29 :T_Whitespace
-29 :57 continue
-29 :T_Semicolon
-29 :T_Whitespace
-30 :T_Whitespace
-30 :T_If
-30 :T_Whitespace
-30 :T_LP
-30 :58 j
-30 :T_Whitespace
-30 :T_ROp_G
-30 :T_Whitespace
-30 :T_Decimal-4
-30 :T_Whitespace
-30 :T_LOp_AND
-30 :T_Whitespace
-30 :59 i
-30 :T_Whitespace
-30 :T_ROp_L
-30 :T_Whitespace
-30 :T_Decimal 3
-30 :T_RP
-30 :T_Whitespace
-31 :T_Whitespace
-31 :T_Break
-31 :T_Semicolon
-31 :T_Whitespace
-32 :T_Whitespace
-32 :60 _result
-32 :T_Whitespace
-32 :T_Assign
-32 :T_Whitespace
-32 :61 i
-32 :T_Whitespace
-32 :T_AOp_MN
-32 :T_Whitespace
-32 :62 j
-32 :T_Semicolon
-32 :T_Whitespace
-33 :T_Whitespace
-33 :T_Print
-33 :T_LP
-33 :T_String  "Result: "
-33 :T_Comma
-33 :T_Whitespace
-33 :64 "Result: "_result
-33 :T_RP
-33 :T_Semicolon
-33 :T_Whitespace
-34 :T_Whitespace
-34 :T_RC
-34 :T_Whitespace
-35 :T_Whitespace
-35 :T_RC
-35 :T_Whitespace
-36 :T_Whitespace
-37 :T_Whitespace
-37 :T_Print
-37 :T_LP
-37 :T_String  "Test string with escaped characters: "
-37 :T_RP
-37 :T_Semicolon
-37 :T_Whitespace
-38 :T_Whitespace
-38 :T_Print
-38 :T_LP
-38 :T_String  "\n newline, \t tab, \r carriage return."
-38 :T_RP
-38 :T_Semicolon
-38 :T_Whitespace
-39 :T_Whitespace
-40 :T_Whitespace
-40 :T_Print
-40 :T_LP
-40 :T_String  "this is" a whole string no other token like '=' or 'else' or even \\\comment should be recognized"
-40 :T_RP
-40 :T_Semicolon
-40 :T_Whitespace
-41 :T_Whitespace
-41 :T_Char
-41 :T_Whitespace
-41 :68 back
-41 :T_Whitespace
-41 :T_Assign
-41 :T_Whitespace
-41 :T_Character: '\\';
-41 :T_Whitespace
-42 :T_Whitespace
-42 :T_Char
-42 :T_Whitespace
-42 :69 quote
-42 :T_Whitespace
-42 :T_Assign
-42 :T_Whitespace
-42 :T_Character: '\'';
-42 :T_Whitespace
-43 :T_Whitespace
-43 :T_Int
-43 :T_Whitespace
-43 :70 _123
-43 :T_Whitespace
-43 :T_Assign
-43 :T_Whitespace
-43 :T_Hexadecimal 0xABCdef1230
-43 :T_Semicolon
-43 :T_Whitespace
-44 :T_Whitespace
-45 :T_Whitespace
-45 :T_Return
-45 :T_Whitespace
-45 :T_Semicolon
-45 :T_Whitespace
-46 :T_RC
-46 :T_Whitespace

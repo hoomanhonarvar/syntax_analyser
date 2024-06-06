@@ -1,7 +1,7 @@
 import sys
 import pandas as pd
 path=sys.argv[1]
-# path="./test.c"
+# path="./test1.txt"
 
 token_txt=open("token.txt","w")
 data=[]
@@ -39,15 +39,18 @@ with open(path,'r') as file:
     while True:
 
         buffer=file.readline()
+
         if not buffer:
             break
         else:
+
             line+=1
             T_id=""
             state=0
             buffer_index=0
             end=False
             while not end:
+                tmptt = buffer[buffer_index]
                 match state:
                     case 0:         #start state
 
@@ -72,18 +75,15 @@ with open(path,'r') as file:
                         #>
                         if ord(buffer[buffer_index])==60:
                             state = 4
-                            buffer_index += 1
                         #=
                         if ord(buffer[buffer_index])==61:
                             state = 5
                         #<
                         if ord(buffer[buffer_index])==62:
                             state = 6
-                            buffer_index += 1
                         #!
                         if ord(buffer[buffer_index])==33:
                             state = 7
-                            buffer_index += 1
                         # +
                         if ord(buffer[buffer_index])==43:
                             state = 8
@@ -150,6 +150,7 @@ with open(path,'r') as file:
                         #,
                         if ord(buffer[buffer_index])==44:
                             state=25
+                        print(buffer,buffer_index,state)
 
 
                     case 1:         #white space
@@ -194,7 +195,7 @@ with open(path,'r') as file:
                         buffer_index+=1
                         T_id = T_id + buffer[buffer_index-1 ]
                         if buffer_index==len(buffer):
-                            token_txt.write(str(line)+ " :T_Decimal"+str(T_id)+"\n")
+                            token_txt.write(str(line)+ " :T_Decimal"+ str(T_id)+"\n")
                             # print(line, " :T_Decimal",T_id)
                             T_id=""
                         if ord(buffer[buffer_index])>=48 and ord(buffer[buffer_index])<=57:
@@ -205,9 +206,10 @@ with open(path,'r') as file:
                                     token_txt.write(str(line)+" :T_Hexadicimal "+str( T_id)+"\n")
                                     # print(line," :T_Hexadicimal ", T_id)
                                 else:
-                                    token_txt.write(str(line)+" :T_Decimal"+str(T_id)+"\n")
+                                    token_txt.write(str(line)+" :T_Decimal "+str(T_id)+"\n")
                                     # print(line," :T_Decimal",T_id)
                             else:
+                                print(str(line)+" :T_Decimal "+str(T_id)+"\n")
                                 token_txt.write(str(line)+" :T_Decimal "+str(T_id)+"\n")
 
                                 # print(line," :T_Decimal ",T_id)
@@ -216,11 +218,13 @@ with open(path,'r') as file:
 
 
                     case 4:         #>
-                        if buffer[buffer_index] == 60:
+                        buffer_index+=1
+                        if ord(buffer[buffer_index]) == 61:
                             # >=
                             token_txt.write(str(line)+" :T_ROp_GE\n")
                             # print(line," :T_ROp_GE")
                             buffer_index+=1
+                            state = 0
                         else:
                             if ord(buffer[buffer_index]) == 32 or ord(buffer[buffer_index]) == 10 or ord(
                                     buffer[buffer_index]) == 9:
@@ -231,38 +235,41 @@ with open(path,'r') as file:
                                 state=0
 
                     case 5:         #=
-                        buffer_index+=1
-                        if ord(buffer[buffer_index])==61:
+                        # buffer_index+=1
+                        if ord(buffer[buffer_index+1])==61:
                             #==
                             token_txt.write(str(line)+" :T_ROp_E\n")
                             # print(line," :T_ROp_E")
-                            buffer_index+=1
+                            buffer_index+=2
                         else:
                             token_txt.write(str(line)+" :T_Assign\n")
                             # print(line," :T_Assign")
+                            buffer_index+=1
+
                         state=0
 
                     case 6:         #<
-                        if buffer[buffer_index] == 62:
+                        if ord(buffer[buffer_index+1]) == 61:
                             # <=
                             token_txt.write(str(line)+" :T_ROp_LE\n")
                             # print(line," :T_ROp_LE")
-                            buffer_index+=1
+                            buffer_index+=2
                         else:
                             token_txt.write(str(line)+" :T_ROp_L\n")
                             # print(line," :T_ROp_L")
-                            state=0
+                            buffer_index+=1
+                        state=0
                     case 7:         #!
-                        if buffer[buffer_index] == 61:
+                        if ord(buffer[buffer_index+1]) == 61:
                             # !=
                             token_txt.write(str(line)+" :T_ROp_NE\n")
                             # print(line," :T_ROp_NE")
                             buffer_index += 1
                         else:
                             token_txt.write(str(line)+" :T_LOp_NOT\n")
-
                             # print(line," :T_LOp_NOT")
-                            state=0
+                        buffer_index+=1
+                        state=0
                     case 8:         #+
                             token_txt.write(str(line)+" :T_AOp_PL\n")
 
@@ -287,11 +294,9 @@ with open(path,'r') as file:
                             # print(line," :T_Comment")
                             break
                         else:
-                            state=0
                             token_txt.write(str(line)+" :T_AOp_DV\n")
-
                             # print(line," :T_AOp_DV")
-
+                            state = 0
                     case 12:        #%
                         token_txt.write(str(line)+" :T_AOp_RM\n")
 
@@ -372,7 +377,7 @@ with open(path,'r') as file:
                             buffer_index += 1
                             T_id += buffer[buffer_index]
                             buffer_index += 1
-                            token_txt.write(str(line)+" :T_Character: "+str(T_id)+"\n")
+                            token_txt.write(str(line)+" :T_Character : "+str(T_id)+"\n")
                             # print(line," :T_Character: ",T_id)
                             T_id=""
                         else:

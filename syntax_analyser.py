@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from queue import LifoQueue
 class Grammar:
   def __init__(self, productions, terminals, non_terminals,start_variable):
     self.productions = productions
@@ -102,56 +103,63 @@ class Grammar:
       temp.remove("ε")
       temp.add("$")
       self.sparse_table = pd.DataFrame(index=list(self.non_terminals), columns=list(temp))
-      print(self.sparse_table)
+      self.sparse_table=self.sparse_table.fillna("error")
       for non_terminal, productions in self.productions.items():
           for production in productions:
-                for a in self.first_product(production):
-
+                tmp =self.first_product(production)
+                for a in tmp:
                     if a!="ε":
                         self.sparse_table.at[non_terminal,a]=production
+
                 if production==["ε"]:
                     for j in self.follow[non_terminal]:
-                        self.sparse_table.at[non_terminal,j]=production
-      #panic mode
-      for non_terminal in self.non_terminals:
-          for follow in self.follow[non_terminal]:
-              if type(self.sparse_table[follow][non_terminal])!="<class 'list'>":
-                  self.sparse_table.at[non_terminal,follow]="Sync"
+                        if  self.sparse_table[j][non_terminal]=="error":
+                            self.sparse_table.at[non_terminal,j]=production
+      # #panic mode
+      # for non_terminal in self.non_terminals:
+      #     for follow in self.follow[non_terminal]:
+      #         if type(self.sparse_table[follow][non_terminal])!="<class 'list'>":
+      #             if self.sparse_table[follow][non_terminal]!="ε":
+      #               self.sparse_table.at[non_terminal,follow]="Sync"
 
 grammar = Grammar({
-    "Program": [["FunctionDeclarations", "Declarations","Statements"]],
+    # "Program": [["FunctionDeclarations", "Declarations","Statements"]],
+    "Program": [["FunctionDeclarations"]],
     "FunctionDeclarations": [["FunctionDeclaration","FunctionDeclarations"], ["ε"]],
     "FunctionDeclaration": [["Type","T_Id","T_LP","ParameterList","T_RP","Block"]],
     "ParameterList": [["Parameter", "ParameterListPrime"], ["ε"]],
     "ParameterListPrime": [["T_Comma", "Parameter","ParameterListPrime"], ["ε"]],
     "Parameter": [["Type", "T_Id","ArraySpecifier"]],
-    "Declarations": [["Declaration", "Declarations"], ["ε"]],
-    "Declaration": [["Type", "T_Id","ArraySpecifier","AssignmentPrime","T_Semicolon"]],
+    "Declarations": [["Declaration","T_Semicolon", "Declarations"], ["ε"]],
+    "Declaration": [["Type", "T_Id","ArraySpecifier","AssignmentPrime"]],
     "AssignmentPrime": [["T_Assign","Expression"],["ε"]],
     "Type": [["T_Int"], ["T_Bool"],["T_Char"]],
     "ArraySpecifier": [["T_LB", "Num","T_RB","ArraySpecifier"], ["ε"]],
-    "Num":[["T_Decimal"],["T_Hexadecimal"]],
+    "Num":[["T_Decimal"],["T_Hexadecimal"],["ε"]],
     "Statements": [["Statement", "Statements"], ["ε"]],
-    "Statement": [["Assignment", "T_Semicolon"], ["PrintStatement","T_Semicolon"],["Loop"],["IfStatement"],["Block"],["T_Continue","T_Semicolon"],["T_Break","T_Semicolon"],["T_Return","Expression","T_Semicolon"],["FunctionCall","T_Semicolon"]],
-    "Assignment": [["T_Id", "T_Assign","Expression"]],
+    "Statement": [["Declaration","T_Semicolon"],["Assignment", "T_Semicolon"], ["PrintStatement","T_Semicolon"],["Loop"],["IfStatement"],["Block"],["T_Continue","T_Semicolon"],["T_Break","T_Semicolon"],["T_Return","Expression","T_Semicolon"],["FunctionCall","T_Semicolon"]],
+    "Assignment": [["T_Id","ArraySpecifier", "T_Assign","Expression"]],
     "PrintStatement": [["T_Print", "T_LP","FormattingString","T_RP"]],
     "FormattingString": [["T_String", "ExpressionList"]],
     "ExpressionList": [["T_Comma", "Expression"], ["ε"]],
-    "Loop": [["T_For", "T_LP","Assignment","T_Semicolon","Condition","T_Semicolon","Assignment","T_RP","Statement"]],
+    "Assignment_Declaration":[["Assignment"],["Declaration"]],
+    "Loop": [["T_For", "T_LP","Assignment_Declaration","T_Semicolon","Condition","T_Semicolon","Assignment","T_RP","Statement"]],
     "IfStatement": [["T_If", "T_LP","Condition","T_RP","Statement","ElsePart"]],
     "ElsePart": [["T_Else", "Statement"], ["ε"]],
-    "Block": [["T_LC", "Statement","T_RC"]],
-    "Condition": [["Expression", "ConditionPrime"],["RO_Expression"]],
-    "RO_Expression":[["Expression","T_ROp","Expression"]],
+    "Block": [["T_LC", "Statements","T_RC"]],
+    "Condition": [["Expression","Condition_tmp"]],
+    "Condition_tmp":[["RO_Expression"],["ConditionPrime"]],
+    "RO_Expression":[["T_ROp","Expression"]],
     "T_ROp":[["T_ROp_NE"],["T_ROp_E"],["T_ROp_L"],["T_ROp_G"],["T_ROp_LE"],["T_ROp_GE"]],
     "ConditionPrime": [["T_LOp", "Expression","ConditionPrime"], ["ε"]],
-    "T_LOp":[["T_LOp_AND"],["T_LOp_OR"]],
+    "T_LOp":[["T_LOp_AND"],["T_LOp_OR"],["T_LOp_NOT"]],
     "Expression": [["Term", "ExpressionPrime"]],
     "ExpressionPrime": [["T_AOp_PL", "Term","ExpressionPrime"],["T_AOp_MN", "Term","ExpressionPrime"], ["ε"]],
     "Term": [["Factor", "TermPrime"]],
     "TermPrime": [["Aop", "Factor","TermPrime"], ["ε"]],
     "Aop":[["T_AOp_DV"],["T_AOp_ML"],["T_AOp_RM"]],
-    "Factor": [["T_Id"], ["T_Decimal"], ["T_Hexadecimal"], ["T_Character"], ["T_String"], ["T_True"], ["T_False"], ["T_LOp_NOT","Factor"], ["T_LP","Expression","T_RP"], ["FunctionCall"]],
+    "Factor": [["T_Id","FunctionCallPrime"], ["T_Decimal"], ["T_Hexadecimal"], ["T_Character"], ["T_String"], ["T_True"], ["T_False"], ["T_LOp_NOT","Factor"], ["T_LP","Expression","T_RP"]],
+    "FunctionCallPrime":[[ "T_LP","ArgumentList","T_RP"], ["ε"]],
     "FunctionCall": [["T_Id", "T_LP","ArgumentList","T_RP"], ["ε"]],
     "ArgumentList": [["Expression", "ArgumentListPrime"], ["ε"]],
     "ArgumentListPrime": [["T_Comma", "Expression","ArgumentListPrime"], ["ε"]],
@@ -168,19 +176,74 @@ grammar = Grammar({
       "PrintStatement","FormattingString","ExpressionList","Loop","IfStatement",
       "ElsePart","Block","Condition","RO_Expression","T_ROp","ConditionPrime",
       "T_LOp","Expression","ExpressionPrime","Term","TermPrime","Aop","Factor",
-      "FunctionCall","ArgumentList","ArgumentListPrime"}
+      "FunctionCall","ArgumentList","ArgumentListPrime","Condition_tmp","FunctionCallPrime","Assignment_Declaration"}
     ,"Program")
-print(type(['salam']),type(np.nan),type(['salam',"sdfkj"]))
 grammar.calculate_first()
 grammar.print_first()
 
 grammar.calculate_follow()
 grammar.print_follow()
-
+# pd.set_option('display.max_columns', None)
 grammar.fill_sparse_table()
 print(grammar.sparse_table)
+f=open("token.txt","r")
+
+stack=LifoQueue()
+stack.put("$")
+stack.put(grammar.start_variable)
+panic_mode=False
+count =0
+for token in f:
+    count+=1
+    var =stack.get()
+    stack.put(var)
+    tmp = token.split(":")[1][:-1]
+    print(tmp)
+    print(token)
+    if token.split(":")[0]=="23":
+        print("hello")
+    if tmp!="T_Whitespace":
+        if len(tmp.split(" "))>1:
+            if tmp.split(" ")[0]=="T_String":
+                tmp="T_String"
+            elif tmp.split(" ")[0]=="T_Decimal":
+                tmp="T_Decimal"
+            elif tmp.split(" ")[0]=="T_Hexadecimal":
+                tmp="T_Hexadecimal"
+            elif tmp.split(" ")[0]=="T_Character":
+                tmp="T_Character"
+            else:
+               tmp="T_Id"
 
 
+        print(tmp,"   :",stack.queue)
+        while var not in grammar.terminals:
+            print(stack.queue)
+            if var=="ε":
+                stack.get()
+            else:
+                if grammar.sparse_table[tmp][var] =="Sync":
+                    print("error    i just see sync")
+                    stack.get()
+                elif grammar.sparse_table[tmp][var] =="error":
+                    panic_mode=True
+                    print("tree      error!!!")
+                    print(token)
+
+                else:
+                    stack.get()
+                    for production in reversed(grammar.sparse_table[tmp][var]):
+                        stack.put(production)
+            var = stack.get()
+            stack.put(var)
+        # print(grammar.sparse_table[token.split(":")[1][:-1]][var])
+
+        if var in grammar.terminals:
+            if tmp!=var:
+                print("error")
+            else:
+                stack.get()
+print("done")
 
 
 
