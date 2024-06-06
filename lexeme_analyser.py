@@ -50,7 +50,6 @@ with open(path,'r') as file:
             buffer_index=0
             end=False
             while not end:
-                tmptt = buffer[buffer_index]
                 match state:
                     case 0:         #start state
 
@@ -150,8 +149,6 @@ with open(path,'r') as file:
                         #,
                         if ord(buffer[buffer_index])==44:
                             state=25
-                        print(buffer,buffer_index,state)
-
 
                     case 1:         #white space
                         buffer_index+=1
@@ -209,7 +206,6 @@ with open(path,'r') as file:
                                     token_txt.write(str(line)+" :T_Decimal "+str(T_id)+"\n")
                                     # print(line," :T_Decimal",T_id)
                             else:
-                                print(str(line)+" :T_Decimal "+str(T_id)+"\n")
                                 token_txt.write(str(line)+" :T_Decimal "+str(T_id)+"\n")
 
                                 # print(line," :T_Decimal ",T_id)
@@ -389,7 +385,7 @@ with open(path,'r') as file:
                             buffer_index += 1
                             T_id += buffer[buffer_index]
                             buffer_index += 1
-                            token_txt.write(str(line)+ " :T_Character: "+str( T_id)+"\n")
+                            token_txt.write(str(line)+ " :T_Character : "+str( T_id)+"\n")
                             # print(line, " :T_Character: ", T_id)
                             T_id = ""
                         state=0

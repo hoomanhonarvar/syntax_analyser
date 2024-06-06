@@ -140,24 +140,26 @@ grammar = Grammar({
     "Statement": [["Declaration","T_Semicolon"],["Assignment", "T_Semicolon"], ["PrintStatement","T_Semicolon"],["Loop"],["IfStatement"],["Block"],["T_Continue","T_Semicolon"],["T_Break","T_Semicolon"],["T_Return","Expression","T_Semicolon"],["FunctionCall","T_Semicolon"]],
     "Assignment": [["T_Id","ArraySpecifier", "T_Assign","Expression"]],
     "PrintStatement": [["T_Print", "T_LP","FormattingString","T_RP"]],
-    "FormattingString": [["T_String", "ExpressionList"]],
+    "FormattingString": [["T_String", "ExpressionList"],["ExpressionListPrime","T_String"]],
     "ExpressionList": [["T_Comma", "Expression"], ["ε"]],
+    "ExpressionListPrime":[["Expression","T_Comma"]],
     "Assignment_Declaration":[["Assignment"],["Declaration"]],
-    "Loop": [["T_For", "T_LP","Assignment_Declaration","T_Semicolon","Condition","T_Semicolon","Assignment","T_RP","Statement"]],
-    "IfStatement": [["T_If", "T_LP","Condition","T_RP","Statement","ElsePart"]],
+    "Loop": [["T_For", "T_LP","Assignment_Declaration","T_Semicolon","Expression","T_Semicolon","Assignment","T_RP","Statement"]],
+    "IfStatement": [["T_If", "T_LP","Expression","T_RP","Statement","ElsePart"]],
     "ElsePart": [["T_Else", "Statement"], ["ε"]],
     "Block": [["T_LC", "Statements","T_RC"]],
-    "Condition": [["Expression","Condition_tmp"]],
-    "Condition_tmp":[["RO_Expression"],["ConditionPrime"]],
-    "RO_Expression":[["T_ROp","Expression"]],
-    "T_ROp":[["T_ROp_NE"],["T_ROp_E"],["T_ROp_L"],["T_ROp_G"],["T_ROp_LE"],["T_ROp_GE"]],
-    "ConditionPrime": [["T_LOp", "Expression","ConditionPrime"], ["ε"]],
-    "T_LOp":[["T_LOp_AND"],["T_LOp_OR"],["T_LOp_NOT"]],
+    # "Condition": [["Expression","Condition_tmp"]],
+    # "Condition_tmp":[["RO_Expression"],["ConditionPrime"]],
+    # "RO_Expression":[["T_ROp","Expression"]],
+    # "ConditionPrime": [["T_LOp", "Expression","ConditionPrime"], ["ε"]],
     "Expression": [["Term", "ExpressionPrime"]],
     "ExpressionPrime": [["T_AOp_PL", "Term","ExpressionPrime"],["T_AOp_MN", "Term","ExpressionPrime"], ["ε"]],
     "Term": [["Factor", "TermPrime"]],
-    "TermPrime": [["Aop", "Factor","TermPrime"], ["ε"]],
+    "TermPrime": [["Operation", "Factor","TermPrime"], ["ε"]],
+    "Operation":[["Aop"],["T_LOp"],["T_ROp"]],
     "Aop":[["T_AOp_DV"],["T_AOp_ML"],["T_AOp_RM"]],
+    "T_LOp":[["T_LOp_AND"],["T_LOp_OR"],["T_LOp_NOT"]],
+    "T_ROp": [["T_ROp_NE"], ["T_ROp_E"], ["T_ROp_L"], ["T_ROp_G"], ["T_ROp_LE"], ["T_ROp_GE"]],
     "Factor": [["T_Id","FunctionCallPrime"], ["T_Decimal"], ["T_Hexadecimal"], ["T_Character"], ["T_String"], ["T_True"], ["T_False"], ["T_LOp_NOT","Factor"], ["T_LP","Expression","T_RP"]],
     "FunctionCallPrime":[[ "T_LP","ArgumentList","T_RP"], ["ε"]],
     "FunctionCall": [["T_Id", "T_LP","ArgumentList","T_RP"], ["ε"]],
@@ -169,14 +171,15 @@ grammar = Grammar({
    "T_LP","T_RP","T_LB","T_RB","T_LC","T_RC","T_Semicolon","T_Comma","T_Bool",
    "T_Break","T_Char","T_Continue","T_Else","T_False","T_For","T_If","T_Int",
    "T_Print","T_Return","T_True","T_AOp_PL","T_AOp_MN","T_AOp_ML","T_AOp_DV",
-   "T_AOp_RM","T_ROp_L","T_ROp_G","T_ROp_LE","T_ROp_GE"}
+   "T_AOp_RM","T_ROp_L","T_ROp_G","T_ROp_LE","T_ROp_GE","$"}
     ,{"Program","FunctionDeclarations","FunctionDeclaration","Statement",
       "ParameterList","ParameterListPrime","Parameter","Declarations","Declaration",
       "AssignmentPrime","Type","ArraySpecifier","Num","Statements","Assignment",
       "PrintStatement","FormattingString","ExpressionList","Loop","IfStatement",
       "ElsePart","Block","Condition","RO_Expression","T_ROp","ConditionPrime",
       "T_LOp","Expression","ExpressionPrime","Term","TermPrime","Aop","Factor",
-      "FunctionCall","ArgumentList","ArgumentListPrime","Condition_tmp","FunctionCallPrime","Assignment_Declaration"}
+      "FunctionCall","ArgumentList","ArgumentListPrime","Condition_tmp","FunctionCallPrime","Assignment_Declaration","Operation"
+      ,"ExpressionListPrime"}
     ,"Program")
 grammar.calculate_first()
 grammar.print_first()
@@ -187,7 +190,6 @@ grammar.print_follow()
 grammar.fill_sparse_table()
 print(grammar.sparse_table)
 f=open("token.txt","r")
-
 stack=LifoQueue()
 stack.put("$")
 stack.put(grammar.start_variable)
@@ -195,14 +197,15 @@ panic_mode=False
 count =0
 for token in f:
     count+=1
+    if count%465==0:
+        print("hello")
     var =stack.get()
     stack.put(var)
-    tmp = token.split(":")[1][:-1]
-    print(tmp)
-    print(token)
-    if token.split(":")[0]=="23":
-        print("hello")
-    if tmp!="T_Whitespace":
+    if token=="end":
+        tmp="$"
+    else:
+        tmp = token.split(":")[1][:-1]
+    if tmp!="T_Whitespace" and tmp!="T_Comment":
         if len(tmp.split(" "))>1:
             if tmp.split(" ")[0]=="T_String":
                 tmp="T_String"
@@ -215,10 +218,9 @@ for token in f:
             else:
                tmp="T_Id"
 
+        print(tmp, "   :", stack.queue)
 
-        print(tmp,"   :",stack.queue)
         while var not in grammar.terminals:
-            print(stack.queue)
             if var=="ε":
                 stack.get()
             else:
@@ -227,8 +229,7 @@ for token in f:
                     stack.get()
                 elif grammar.sparse_table[tmp][var] =="error":
                     panic_mode=True
-                    print("tree      error!!!")
-                    print(token)
+
 
                 else:
                     stack.get()

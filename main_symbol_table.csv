@@ -11,39 +11,61 @@
 9,return,T_Return,keyword,0
 10,contintue,T_Contintue,keyword,0
 11,for,T_For,keyword,0
-12,main,T_Id,id,1
-13,j,T_Id,id,2
-14,j,T_Id,id,2
-15,num2,T_Id,id,2
-16,j,T_Id,id,2
-17,j,T_Id,id,2
-18,_result,T_Id,id,3
-19,i,T_Id,id,3
-20,j,T_Id,id,3
-21,"""Result: """,T_String,String,4
-22,"""Result: ""result",T_Id,id,4
-23,add,T_Id,id,8
-24,i,T_Id,id,9
-25,i,T_Id,id,9
-26,i,T_Id,id,9
-27,i,T_Id,id,9
-28,j,T_Id,id,10
-29,j,T_Id,id,10
-30,j,T_Id,id,10
-31,j,T_Id,id,10
-32,i,T_Id,id,11
-33,i,T_Id,id,11
-34,continue,T_Id,id,12
-35,j,T_Id,id,13
-36,i,T_Id,id,13
-37,_result,T_Id,id,15
-38,i,T_Id,id,15
-39,j,T_Id,id,15
-40,"""Result: """,T_String,String,16
-41,"""Result: ""_result",T_Id,id,16
-42,"""Test string with escaped characters: """,T_String,String,20
-43,"""\n newline, \t tab, \r carriage return.""",T_String,String,21
-44,"""this is"" a whole string no other token like '=' or 'else' or even \\\comment should be recognized""",T_String,String,23
-45,back,T_Id,id,24
-46,quote,T_Id,id,25
-47,_123,T_Id,id,26
+12,test_function,T_Id,id,1
+13,a,T_Id,id,1
+14,b,T_Id,id,1
+15,c,T_Id,id,1
+16,c,T_Id,id,3
+17,a,T_Id,id,4
+18,b,T_Id,id,4
+19,a,T_Id,id,7
+20,b,T_Id,id,7
+21,main,T_Id,id,11
+22,add,T_Id,id,12
+23,_assign1,T_Id,id,13
+24,String_1,T_Id,id,14
+25,"""+""",T_String,String,14
+26,String_2,T_Id,id,15
+27,"""-""",T_String,String,15
+28,i,T_Id,id,16
+29,i,T_Id,id,16
+30,i,T_Id,id,16
+31,i,T_Id,id,16
+32,j,T_Id,id,17
+33,j,T_Id,id,17
+34,j,T_Id,id,17
+35,j,T_Id,id,17
+36,i,T_Id,id,18
+37,String_1,T_Id,id,19
+38,j,T_Id,id,20
+39,_assign1,T_Id,id,21
+40,test_function,T_Id,id,22
+41,i,T_Id,id,22
+42,j,T_Id,id,22
+43,add,T_Id,id,22
+44,add,T_Id,id,25
+45,i,T_Id,id,26
+46,i,T_Id,id,26
+47,i,T_Id,id,26
+48,i,T_Id,id,26
+49,j,T_Id,id,27
+50,j,T_Id,id,27
+51,j,T_Id,id,27
+52,j,T_Id,id,27
+53,i,T_Id,id,28
+54,i,T_Id,id,28
+55,continue,T_Id,id,29
+56,j,T_Id,id,30
+57,i,T_Id,id,30
+58,i,T_Id,id,32
+59,String_2,T_Id,id,33
+60,j,T_Id,id,34
+61,_assign1,T_Id,id,35
+62,test_function,T_Id,id,36
+63,i,T_Id,id,36
+64,j,T_Id,id,36
+65,add,T_Id,id,36
+66,"""this is"" a whole string no other token like '=' or 'else' or even \\\comment should be recogized""",T_String,String,39
+67,back,T_Id,id,40
+68,quote,T_Id,id,41
+69,_123,T_Id,id,42
