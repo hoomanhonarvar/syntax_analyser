@@ -3,7 +3,7 @@ import pandas as pd
 path=sys.argv[1]
 # path="./test1.txt"
 
-token_txt=open("token.txt","w")
+token_txt=open("tokens.txt","w")
 data=[]
 main_symbol_table = pd.DataFrame(data, columns=[ 'word', 'name', 'type','line'])
 #adding key words to symbol table

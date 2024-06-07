@@ -1,0 +1,405 @@
+1 :T_Int
+1 :T_Whitespace
+1 :12 test_function
+1 :T_LP
+1 :T_Int
+1 :T_Whitespace
+1 :13 a
+1 :T_Comma
+1 :T_Whitespace
+1 :T_Int
+1 :T_Whitespace
+1 :14 b
+1 :T_Comma
+1 :T_Whitespace
+1 :T_Bool
+1 :T_Whitespace
+1 :15 c
+1 :T_RP
+1 :T_LC
+1 :T_Whitespace
+2 :T_Whitespace
+2 :T_Comment
+3 :T_Whitespace
+3 :T_If
+3 :T_Whitespace
+3 :T_LP
+3 :16 c
+3 :T_ROp_E
+3 :T_True
+3 :T_RP
+3 :T_LC
+3 :T_Whitespace
+4 :T_Whitespace
+4 :T_Return
+4 :T_Whitespace
+4 :17 a
+4 :T_AOp_PL
+4 :18 b
+4 :T_Whitespace
+4 :T_Semicolon
+4 :T_Whitespace
+5 :T_Whitespace
+5 :T_RC
+5 :T_Whitespace
+6 :T_Whitespace
+6 :T_Else
+6 :T_Whitespace
+6 :T_LC
+6 :T_Whitespace
+7 :T_Whitespace
+7 :T_Return
+7 :T_Whitespace
+7 :19 a
+7 :T_Whitespace
+7 :T_AOp_MN
+7 :T_Whitespace
+7 :20 b
+7 :T_Whitespace
+7 :T_Semicolon
+7 :T_Whitespace
+8 :T_Whitespace
+8 :T_RC
+8 :T_Whitespace
+9 :T_RC
+9 :T_Whitespace
+10 :T_Whitespace
+11 :T_Int
+11 :T_Whitespace
+11 :21 main
+11 :T_Whitespace
+11 :T_LP
+11 :T_RP
+11 :T_LC
+11 :T_Whitespace
+12 :T_Whitespace
+12 :T_Bool
+12 :T_Whitespace
+12 :22 add
+12 :T_Whitespace
+12 :T_Assign
+12 :T_Whitespace
+12 :T_True
+12 :T_Whitespace
+12 :T_Semicolon
+12 :T_Whitespace
+13 :T_Whitespace
+13 :T_Char
+13 :T_Whitespace
+13 :23 _assign1
+13 :T_Whitespace
+13 :T_Assign
+13 :T_Whitespace
+13 :T_Character : '='
+13 :T_Whitespace
+13 :T_Semicolon
+13 :T_Whitespace
+14 :T_Whitespace
+14 :T_Char
+14 :T_Whitespace
+14 :24 String_1
+14 :T_LB
+14 :T_RB
+14 :T_Whitespace
+14 :T_Assign
+14 :T_Whitespace
+14 :T_String  "+"
+14 :T_Whitespace
+14 :T_Semicolon
+14 :T_Whitespace
+15 :T_Whitespace
+15 :T_Char
+15 :T_Whitespace
+15 :26 String_2
+15 :T_Whitespace
+15 :T_LB
+15 :T_RB
+15 :T_Whitespace
+15 :T_Assign
+15 :T_Whitespace
+15 :T_String  "-"
+15 :T_Whitespace
+15 :T_Semicolon
+15 :T_Whitespace
+16 :T_Whitespace
+16 :T_For
+16 :T_LP
+16 :T_Int
+16 :T_Whitespace
+16 :28 i
+16 :T_Whitespace
+16 :T_Assign
+16 :T_Whitespace
+16 :T_Decimal 0
+16 :T_Whitespace
+16 :T_Semicolon
+16 :T_Whitespace
+16 :29 i
+16 :T_Whitespace
+16 :T_ROp_GE
+16 :T_Whitespace
+16 :T_LP
+16 :T_Decimal 10
+16 :T_Whitespace
+16 :T_AOp_DV
+16 :T_Whitespace
+16 :T_Decimal 2
+16 :T_RP
+16 :T_Semicolon
+16 :T_Whitespace
+16 :30 i
+16 :T_Whitespace
+16 :T_Assign
+16 :T_Whitespace
+16 :31 i
+16 :T_Whitespace
+16 :T_AOp_PL
+16 :T_Whitespace
+16 :T_Decimal 1
+16 :T_RP
+16 :T_LC
+16 :T_Whitespace
+17 :T_Whitespace
+17 :T_For
+17 :T_Whitespace
+17 :T_LP
+17 :T_Int
+17 :T_Whitespace
+17 :32 j
+17 :T_Whitespace
+17 :T_Assign
+17 :T_Whitespace
+17 :T_Hexadecimal 0x0
+17 :T_Whitespace
+17 :T_Semicolon
+17 :T_Whitespace
+17 :33 j
+17 :T_Whitespace
+17 :T_ROp_NE
+17 :T_Whitespace
+17 :T_LP
+17 :T_Decimal 5
+17 :T_Whitespace
+17 :T_AOp_ML
+17 :T_Whitespace
+17 :T_Decimal -1
+17 :T_RP
+17 :T_Whitespace
+17 :T_Semicolon
+17 :T_Whitespace
+17 :34 j
+17 :T_Whitespace
+17 :T_Assign
+17 :T_Whitespace
+17 :35 j
+17 :T_Whitespace
+17 :T_AOp_MN
+17 :T_Whitespace
+17 :T_Decimal 1
+17 :T_RP
+17 :T_LC
+17 :T_Whitespace
+18 :T_Whitespace
+18 :T_Print
+18 :T_LP
+18 :T_String  "Hello"
+18 :T_RP
+18 :T_Whitespace
+18 :T_Semicolon
+18 :T_Whitespace
+19 :T_Whitespace
+19 :T_RC
+19 :T_Whitespace
+20 :T_Whitespace
+20 :T_RC
+20 :T_Whitespace
+21 :T_Whitespace
+21 :37 add
+21 :T_Whitespace
+21 :T_Assign
+21 :T_Whitespace
+21 :T_False
+21 :T_Whitespace
+21 :T_Semicolon
+21 :T_Whitespace
+22 :T_Whitespace
+22 :T_For
+22 :T_Whitespace
+22 :T_LP
+22 :T_Int
+22 :T_Whitespace
+22 :38 i
+22 :T_Whitespace
+22 :T_Assign
+22 :T_Whitespace
+22 :T_Decimal 0
+22 :T_Whitespace
+22 :T_Semicolon
+22 :T_Whitespace
+22 :T_LOp_NOT
+22 :T_LP
+22 :39 i
+22 :T_Whitespace
+22 :T_ROp_E
+22 :T_Whitespace
+22 :T_Decimal 5
+22 :T_RP
+22 :T_Semicolon
+22 :T_Whitespace
+22 :40 i
+22 :T_Whitespace
+22 :T_Assign
+22 :T_Whitespace
+22 :41 i
+22 :T_Whitespace
+22 :T_AOp_PL
+22 :T_Whitespace
+22 :T_Decimal 1
+22 :T_RP
+22 :T_Whitespace
+22 :T_LC
+22 :T_Whitespace
+23 :T_Whitespace
+23 :T_For
+23 :T_Whitespace
+23 :T_LP
+23 :T_Int
+23 :T_Whitespace
+23 :42 j
+23 :T_Whitespace
+23 :T_Assign
+23 :T_Whitespace
+23 :T_Hexadecimal 0x0
+23 :T_Whitespace
+23 :T_Semicolon
+23 :T_Whitespace
+23 :43 j
+23 :T_Whitespace
+23 :T_ROp_LE
+23 :T_Whitespace
+23 :T_Decimal -5
+23 :T_Semicolon
+23 :T_Whitespace
+23 :44 j
+23 :T_Whitespace
+23 :T_Assign
+23 :T_Whitespace
+23 :45 j
+23 :T_Whitespace
+23 :T_AOp_MN
+23 :T_Whitespace
+23 :T_Decimal 1
+23 :T_RP
+23 :T_Whitespace
+23 :T_LC
+23 :T_Whitespace
+24 :T_Whitespace
+24 :T_If
+24 :T_LP
+24 :T_LP
+24 :46 i
+24 :T_Whitespace
+24 :T_AOp_RM
+24 :T_Whitespace
+24 :T_Decimal 4
+24 :T_RP
+24 :T_Whitespace
+24 :T_ROp_E
+24 :T_Whitespace
+24 :T_Decimal 0
+24 :T_Whitespace
+24 :T_LOp_OR
+24 :T_Whitespace
+24 :T_LP
+24 :47 i
+24 :T_Whitespace
+24 :T_AOp_RM
+24 :T_Whitespace
+24 :T_Decimal 3
+24 :T_RP
+24 :T_Whitespace
+24 :T_ROp_E
+24 :T_Whitespace
+24 :T_Decimal 0
+24 :T_Whitespace
+24 :T_RP
+24 :T_Whitespace
+25 :T_Whitespace
+25 :T_Continue
+25 :T_Semicolon
+25 :T_Whitespace
+26 :T_Whitespace
+26 :T_If
+26 :T_LP
+26 :48 j
+26 :T_Whitespace
+26 :T_ROp_G
+26 :T_Whitespace
+26 :T_Decimal -4
+26 :T_Whitespace
+26 :T_LOp_AND
+26 :T_Whitespace
+26 :49 i
+26 :T_Whitespace
+26 :T_ROp_L
+26 :T_Whitespace
+26 :T_Decimal 3
+26 :T_RP
+26 :T_Whitespace
+27 :T_Whitespace
+27 :T_Break
+27 :T_Semicolon
+27 :T_Whitespace
+28 :T_Whitespace
+28 :T_Print
+28 :T_LP
+28 :T_String  "hello"
+28 :T_RP
+28 :T_Semicolon
+28 :T_Whitespace
+29 :T_Whitespace
+29 :T_RC
+29 :T_Whitespace
+30 :T_Whitespace
+30 :T_RC
+30 :T_Whitespace
+31 :T_Whitespace
+31 :T_Print
+31 :T_LP
+31 :T_String  "this is" a whole string no other token like '=' or 'else' or even \\\comment should be recogized"
+31 :T_RP
+31 :T_Semicolon
+31 :T_Whitespace
+32 :T_Whitespace
+32 :T_Char
+32 :T_Whitespace
+32 :52 back
+32 :T_Whitespace
+32 :T_Assign
+32 :T_Whitespace
+32 :T_Character : '\\' 
+32 :T_Semicolon
+32 :T_Whitespace
+33 :T_Whitespace
+33 :T_Char
+33 :T_Whitespace
+33 :53 quote
+33 :T_Whitespace
+33 :T_Assign
+33 :T_Whitespace
+33 :T_Character : '\'' 
+33 :T_Semicolon
+33 :T_Whitespace
+34 :T_Whitespace
+34 :T_Int
+34 :T_Whitespace
+34 :54 _123
+34 :T_Whitespace
+34 :T_Assign
+34 :T_Whitespace
+34 :T_Hexadecimal 0xABCdef1230
+34 :T_Whitespace
+34 :T_Semicolon
+34 :T_Whitespace
+35 :T_RC
+end

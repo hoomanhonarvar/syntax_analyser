@@ -198,19 +198,22 @@ grammar = Grammar({
       ,"ExpressionPrime"}
     ,"Program")
 grammar.calculate_first()
-grammar.print_first()
+# grammar.print_first()
 
 grammar.calculate_follow()
-grammar.print_follow()
+# grammar.print_follow()
 # pd.set_option('display.max_columns', None)
 grammar.fill_sparse_table()
-f=open("token.txt","r")
+f=open("tokens.txt","r")
 stack=LifoQueue()
 stack.put("$")
 stack.put(grammar.start_variable)
 sparse_tree=[]
 panic_mode=False
+count=0
+number_of_problems=0
 for token in f:
+    count += 1
     var = stack.get()
     stack.put(var)
     if token=="end":
@@ -249,12 +252,14 @@ for token in f:
                 else:
                     if grammar.sparse_table[tmp][var] =="Sync":
                         panic_mode=True
-                        print("error    i just see sync")
+                        number_of_problems+=1
+                        print("token is: ", tmp, "    top_stack is :", var , "number of token is :",count)
+                        print("error")
                         print_sparse_tree(sparse_tree)
-                        stack.get()
-
+                        break
                     elif grammar.sparse_table[tmp][var] =="error":
-                        print_sparse_tree(sparse_tree)
+                        number_of_problems+=1
+                        print("error ",count)
                         panic_mode=True
                     else:
                         stack.get()
@@ -267,12 +272,14 @@ for token in f:
 
             if var in grammar.terminals:
                 if tmp!=var:
+                    number_of_problems+=1
+                    print("token is: ",tmp,"    top_stack is :",var)
                     print("error")
                 else:
                     stack.get()
 
-print("done")
-
+if number_of_problems==0:
+    print_sparse_tree(sparse_tree)
 
 
 
