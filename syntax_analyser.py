@@ -198,8 +198,6 @@ panic_mode=False
 count =0
 for token in f:
     count+=1
-    if count%465==0:
-        print("hello")
     var =stack.get()
     stack.put(var)
     if token=="end":
@@ -230,8 +228,6 @@ for token in f:
                     stack.get()
                 elif grammar.sparse_table[tmp][var] =="error":
                     panic_mode=True
-
-
                 else:
                     stack.get()
                     for production in reversed(grammar.sparse_table[tmp][var]):
@@ -245,6 +241,8 @@ for token in f:
                 print("error")
             else:
                 stack.get()
+        print( "      :", stack.queue)
+
 print("done")
 
 
