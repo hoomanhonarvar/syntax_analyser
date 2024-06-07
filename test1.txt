@@ -17,7 +17,7 @@ int main() {
     char _char_var = 'A';
     bool bool_var = true;
     string_var = "Hello, world!";
-    const char* const_char_ptr = "This is a constant string.";
+    int const_char_ptr = "This is a constant string.";
 
     // Print the values of variables
     print("Integer variable: ", integer_var);
@@ -43,11 +43,11 @@ int main() {
     print("Power: ", power);
 
     // Test boolean conditions and loops
-    for (int i = 0; i < 10; ++i) {
-        if (i % 2 == 0) {
-            print(i, " is even.");
+    for (int i = 0 ; i < 10; i = i + 1) {
+        if (i % 2 == 0 ) {
+            print(" is even.", i);
         } else {
-            print(i, " is odd.");
+            print(" is odd.", i);
         }
     }
 
@@ -55,5 +55,5 @@ int main() {
     test_function(5, 3, true);
     test_function(10, 7, false);
 
-    return 0;
+    return 0 ;
 }

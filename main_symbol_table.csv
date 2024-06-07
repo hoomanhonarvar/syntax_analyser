@@ -11,46 +11,74 @@
 9,return,T_Return,keyword,0
 10,continue,T_Continue,keyword,0
 11,for,T_For,keyword,0
-12,test_function,T_Id,id,1
-13,a,T_Id,id,1
-14,b,T_Id,id,1
-15,c,T_Id,id,1
+12,test_function,T_Id,id,2
+13,a,T_Id,id,2
+14,b,T_Id,id,2
+15,c,T_Id,id,2
 16,c,T_Id,id,3
-17,a,T_Id,id,4
-18,b,T_Id,id,4
-19,a,T_Id,id,7
-20,b,T_Id,id,7
-21,main,T_Id,id,11
-22,add,T_Id,id,12
-23,_assign1,T_Id,id,13
-24,String_1,T_Id,id,14
-25,"""+""",T_String,String,14
-26,String_2,T_Id,id,15
-27,"""-""",T_String,String,15
-28,i,T_Id,id,16
-29,i,T_Id,id,16
-30,i,T_Id,id,16
-31,i,T_Id,id,16
-32,j,T_Id,id,17
-33,j,T_Id,id,17
-34,j,T_Id,id,17
-35,j,T_Id,id,17
-36,"""salam""",T_String,String,18
-37,add,T_Id,id,21
-38,i,T_Id,id,22
-39,i,T_Id,id,22
-40,i,T_Id,id,22
-41,i,T_Id,id,22
-42,j,T_Id,id,23
-43,j,T_Id,id,23
-44,j,T_Id,id,23
-45,j,T_Id,id,23
-46,i,T_Id,id,24
-47,i,T_Id,id,24
-48,j,T_Id,id,26
-49,i,T_Id,id,26
-50,"""salam""",T_String,String,28
-51,"""this is"" a whole string no other token like '=' or 'else' or even \\\comment should be recogized""",T_String,String,31
-52,back,T_Id,id,32
-53,quote,T_Id,id,33
-54,_123,T_Id,id,34
+17,_sum,T_Id,id,5
+18,a,T_Id,id,5
+19,b,T_Id,id,5
+20,"""Sum: """,T_String,String,6
+21,"""Sum: ""sum",T_Id,id,6
+22,difference,T_Id,id,9
+23,a,T_Id,id,9
+24,b,T_Id,id,9
+25,"""Difference: """,T_String,String,10
+26,"""Difference: ""difference",T_Id,id,10
+27,main,T_Id,id,14
+28,_integer_var,T_Id,id,16
+29,_char_var,T_Id,id,17
+30,bool_var,T_Id,id,18
+31,string_var,T_Id,id,19
+32,"""Hello, world!""",T_String,String,19
+33,const_char_ptr,T_Id,id,20
+34,"""This is a constant string.""",T_String,String,20
+35,"""Integer variable: """,T_String,String,23
+36,"""Integer variable: ""integer_var",T_Id,id,23
+37,"""Double variable: """,T_String,String,24
+38,"""Double variable: ""double_var",T_Id,id,24
+39,"""Character variable: """,T_String,String,25
+40,"""Character variable: ""char_var",T_Id,id,25
+41,"""String variable: """,T_String,String,26
+42,"""String variable: ""string_var",T_Id,id,26
+43,"""Constant character pointer: """,T_String,String,27
+44,"""Constant character pointer: ""const_char_ptr",T_Id,id,27
+45,_num1,T_Id,id,30
+46,_num2,T_Id,id,31
+47,_sum,T_Id,id,32
+48,num1,T_Id,id,32
+49,num2,T_Id,id,32
+50,_difference,T_Id,id,33
+51,num1,T_Id,id,33
+52,num2,T_Id,id,33
+53,_product,T_Id,id,34
+54,num1,T_Id,id,34
+55,num2,T_Id,id,34
+56,_remainder,T_Id,id,35
+57,num1,T_Id,id,35
+58,num2,T_Id,id,35
+59,_power,T_Id,id,36
+60,pow,T_Id,id,36
+61,num1,T_Id,id,36
+62,"""Sum: """,T_String,String,39
+63,"""Sum: ""sum",T_Id,id,39
+64,"""Difference: """,T_String,String,40
+65,"""Difference: ""difference",T_Id,id,40
+66,"""Product: """,T_String,String,41
+67,"""Product: ""product",T_Id,id,41
+68,"""Remainder: """,T_String,String,42
+69,"""Remainder: ""remainder",T_Id,id,42
+70,"""Power: """,T_String,String,43
+71,"""Power: ""power",T_Id,id,43
+72,i,T_Id,id,46
+73,i,T_Id,id,46
+74,i,T_Id,id,46
+75,i,T_Id,id,46
+76,i,T_Id,id,47
+77,""" is even.""",T_String,String,48
+78,""" is even.""i",T_Id,id,48
+79,""" is odd.""",T_String,String,50
+80,""" is odd.""i",T_Id,id,50
+81,test_function,T_Id,id,55
+82,test_function,T_Id,id,56

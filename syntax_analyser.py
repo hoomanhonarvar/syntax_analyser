@@ -137,7 +137,7 @@ grammar = Grammar({
     "ArraySpecifier": [["T_LB", "Num","T_RB","ArraySpecifier"], ["ε"]],
     "Num":[["T_Decimal"],["T_Hexadecimal"],["ε"]],
     "Statements": [["Statement", "Statements"], ["ε"]],
-    "Statement": [["Declaration","T_Semicolon"],["T_Id","StatementPrime","T_Semicolon"],["Assignment", "T_Semicolon"], ["PrintStatement","T_Semicolon"],["Loop"],["IfStatement"],["Block"],["T_Continue","T_Semicolon"],["T_Break","T_Semicolon"],["T_Return","Expression","T_Semicolon"]],
+    "Statement": [["Declaration","T_Semicolon"],["T_Id","StatementPrime","T_Semicolon"], ["PrintStatement","T_Semicolon"],["Loop"],["IfStatement"],["Block"],["T_Continue","T_Semicolon"],["T_Break","T_Semicolon"],["T_Return","Expression","T_Semicolon"]],
     "StatementPrime":[["FunctionCallPrime"],["AssignmentPrime"]],
     "Assignment": [["T_Id","ArraySpecifier", "T_Assign","Expression"]],
     "PrintStatement": [["T_Print", "T_LP","FormattingString","T_RP"]],
