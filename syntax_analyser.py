@@ -1,6 +1,21 @@
 import pandas as pd
 import numpy as np
 from queue import LifoQueue
+
+
+def print_sparse_tree(sparse_tree):
+    def print_node(node, indent):
+        if isinstance(node, str):  # Check if the node is a terminal symbol
+            print("  " * indent + node)  # Print terminal symbol
+        else:
+            symbol, children = next(iter(node.items()))
+            print("  " * indent + symbol)  # Print non-terminal symbol
+            for child in children:
+                print_node(child, indent + 1)  # Recursively print children
+
+    for node in sparse_tree:
+
+        print_node(node, 0)
 class Grammar:
   def __init__(self, productions, terminals, non_terminals,start_variable):
     self.productions = productions
@@ -116,11 +131,11 @@ class Grammar:
                         if  self.sparse_table[j][non_terminal]=="error":
                             self.sparse_table.at[non_terminal,j]=production
       # #panic mode
-      # for non_terminal in self.non_terminals:
-      #     for follow in self.follow[non_terminal]:
-      #         if type(self.sparse_table[follow][non_terminal])!="<class 'list'>":
-      #             if self.sparse_table[follow][non_terminal]!="ε":
-      #               self.sparse_table.at[non_terminal,follow]="Sync"
+      for non_terminal in self.non_terminals:
+          for follow in self.follow[non_terminal]:
+              if self.sparse_table[follow][non_terminal]=="error":
+                  if self.sparse_table[follow][non_terminal]!="ε":
+                    self.sparse_table.at[non_terminal,follow]="Sync"
 
 grammar = Grammar({
     # "Program": [["FunctionDeclarations", "Declarations","Statements"]],
@@ -194,10 +209,9 @@ f=open("token.txt","r")
 stack=LifoQueue()
 stack.put("$")
 stack.put(grammar.start_variable)
+sparse_tree=[]
 panic_mode=False
-count =0
 for token in f:
-    count+=1
     var =stack.get()
     stack.put(var)
     if token=="end":
@@ -217,19 +231,22 @@ for token in f:
             else:
                tmp="T_Id"
 
-        print(tmp, "   :", stack.queue)
-
         while var not in grammar.terminals:
             if var=="ε":
                 stack.get()
             else:
                 if grammar.sparse_table[tmp][var] =="Sync":
+                    panic_mode=True
                     print("error    i just see sync")
+                    print_sparse_tree(sparse_tree)
                     stack.get()
+
                 elif grammar.sparse_table[tmp][var] =="error":
+                    print_sparse_tree(sparse_tree)
                     panic_mode=True
                 else:
                     stack.get()
+                    sparse_tree.append({var: [symbol for symbol in grammar.sparse_table[tmp][var][::-1]]})
                     for production in reversed(grammar.sparse_table[tmp][var]):
                         stack.put(production)
             var = stack.get()
@@ -241,11 +258,10 @@ for token in f:
                 print("error")
             else:
                 stack.get()
-        print( "      :", stack.queue)
 
 print("done")
 
-
+# print_sparse_tree(sparse_tree)
 
 
 
