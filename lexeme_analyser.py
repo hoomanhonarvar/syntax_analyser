@@ -19,7 +19,7 @@ For={"word":"for","name":"T_For","type":"keyword","line":0}
 Break={"word":"break","name":"T_Break","type":"keyword","line":0}
 Print={"word":"print","name":"T_Print","type":"keyword","line":0}
 Return={"word":"return","name":"T_Return","type":"keyword","line":0}
-Continue={"word":"contintue","name":"T_Contintue","type":"keyword","line":0}
+Continue={"word":"continue","name":"T_Continue","type":"keyword","line":0}
 
 main_symbol_table=main_symbol_table._append(Bool,ignore_index=True)
 main_symbol_table=main_symbol_table._append(Int,ignore_index=True)

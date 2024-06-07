@@ -132,17 +132,18 @@ grammar = Grammar({
     "Parameter": [["Type", "T_Id","ArraySpecifier"]],
     "Declarations": [["Declaration","T_Semicolon", "Declarations"], ["ε"]],
     "Declaration": [["Type", "T_Id","ArraySpecifier","AssignmentPrime"]],
-    "AssignmentPrime": [["T_Assign","Expression"],["ε"]],
+    "AssignmentPrime": [["ArraySpecifier","T_Assign","Expression"],["ε"]],
     "Type": [["T_Int"], ["T_Bool"],["T_Char"]],
     "ArraySpecifier": [["T_LB", "Num","T_RB","ArraySpecifier"], ["ε"]],
     "Num":[["T_Decimal"],["T_Hexadecimal"],["ε"]],
     "Statements": [["Statement", "Statements"], ["ε"]],
-    "Statement": [["Declaration","T_Semicolon"],["Assignment", "T_Semicolon"], ["PrintStatement","T_Semicolon"],["Loop"],["IfStatement"],["Block"],["T_Continue","T_Semicolon"],["T_Break","T_Semicolon"],["T_Return","Expression","T_Semicolon"],["FunctionCall","T_Semicolon"]],
+    "Statement": [["Declaration","T_Semicolon"],["T_Id","StatementPrime","T_Semicolon"],["Assignment", "T_Semicolon"], ["PrintStatement","T_Semicolon"],["Loop"],["IfStatement"],["Block"],["T_Continue","T_Semicolon"],["T_Break","T_Semicolon"],["T_Return","Expression","T_Semicolon"]],
+    "StatementPrime":[["FunctionCallPrime"],["AssignmentPrime"]],
     "Assignment": [["T_Id","ArraySpecifier", "T_Assign","Expression"]],
     "PrintStatement": [["T_Print", "T_LP","FormattingString","T_RP"]],
-    "FormattingString": [["T_String", "ExpressionList"],["ExpressionListPrime","T_String"]],
-    "ExpressionList": [["T_Comma", "Expression"], ["ε"]],
-    "ExpressionListPrime":[["Expression","T_Comma"]],
+    "FormattingString": [["T_String", "ExpressionsList"]],
+    "ExpressionList": [["T_Comma", "Expression"]],
+    "ExpressionsList":[["ExpressionList","ExpressionsList"],["ε"]],
     "Assignment_Declaration":[["Assignment"],["Declaration"]],
     "Loop": [["T_For", "T_LP","Assignment_Declaration","T_Semicolon","Expression","T_Semicolon","Assignment","T_RP","Statement"]],
     "IfStatement": [["T_If", "T_LP","Expression","T_RP","Statement","ElsePart"]],
@@ -172,14 +173,14 @@ grammar = Grammar({
    "T_Break","T_Char","T_Continue","T_Else","T_False","T_For","T_If","T_Int",
    "T_Print","T_Return","T_True","T_AOp_PL","T_AOp_MN","T_AOp_ML","T_AOp_DV",
    "T_AOp_RM","T_ROp_L","T_ROp_G","T_ROp_LE","T_ROp_GE","$"}
-    ,{"Program","FunctionDeclarations","FunctionDeclaration","Statement",
+    ,{"Program","FunctionDeclarations","FunctionDeclaration","Statement","StatementPrime",
       "ParameterList","ParameterListPrime","Parameter","Declarations","Declaration",
-      "AssignmentPrime","Type","ArraySpecifier","Num","Statements","Assignment",
+      "AssignmentPrime","Type","ArraySpecifier","Num","Statements","Assignment","ExpressionsList",
       "PrintStatement","FormattingString","ExpressionList","Loop","IfStatement",
       "ElsePart","Block","Condition","RO_Expression","T_ROp","ConditionPrime",
-      "T_LOp","Expression","ExpressionPrime","Term","TermPrime","Aop","Factor",
+      "T_LOp","Expression","Term","TermPrime","Aop","Factor",
       "FunctionCall","ArgumentList","ArgumentListPrime","Condition_tmp","FunctionCallPrime","Assignment_Declaration","Operation"
-      ,"ExpressionListPrime"}
+      ,"ExpressionPrime"}
     ,"Program")
 grammar.calculate_first()
 grammar.print_first()
