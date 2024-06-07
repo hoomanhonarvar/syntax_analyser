@@ -204,7 +204,6 @@ grammar.calculate_follow()
 grammar.print_follow()
 # pd.set_option('display.max_columns', None)
 grammar.fill_sparse_table()
-print(grammar.sparse_table)
 f=open("token.txt","r")
 stack=LifoQueue()
 stack.put("$")
@@ -212,7 +211,7 @@ stack.put(grammar.start_variable)
 sparse_tree=[]
 panic_mode=False
 for token in f:
-    var =stack.get()
+    var = stack.get()
     stack.put(var)
     if token=="end":
         tmp="$"
@@ -231,38 +230,48 @@ for token in f:
             else:
                tmp="T_Id"
 
-        while var not in grammar.terminals:
-            if var=="ε":
-                stack.get()
-            else:
-                if grammar.sparse_table[tmp][var] =="Sync":
-                    panic_mode=True
-                    print("error    i just see sync")
-                    print_sparse_tree(sparse_tree)
-                    stack.get()
 
-                elif grammar.sparse_table[tmp][var] =="error":
-                    print_sparse_tree(sparse_tree)
+        if panic_mode:
+            if var in grammar.terminals:
+                print("an error has been occurred! deleting " ,var ," from stack")
+                stack.get()
+                panic_mode=True
+            else:
+                if tmp in grammar.follow[var]:
+                    stack.get()
                     panic_mode=True
+
+        if not panic_mode:
+
+            while var not in grammar.terminals:
+                if var=="ε":
+                    stack.get()
+                else:
+                    if grammar.sparse_table[tmp][var] =="Sync":
+                        panic_mode=True
+                        print("error    i just see sync")
+                        print_sparse_tree(sparse_tree)
+                        stack.get()
+
+                    elif grammar.sparse_table[tmp][var] =="error":
+                        print_sparse_tree(sparse_tree)
+                        panic_mode=True
+                    else:
+                        stack.get()
+                        sparse_tree.append({var: [symbol for symbol in grammar.sparse_table[tmp][var][::-1]]})
+                        for production in reversed(grammar.sparse_table[tmp][var]):
+                            stack.put(production)
+                var = stack.get()
+                stack.put(var)
+            # print(grammar.sparse_table[token.split(":")[1][:-1]][var])
+
+            if var in grammar.terminals:
+                if tmp!=var:
+                    print("error")
                 else:
                     stack.get()
-                    sparse_tree.append({var: [symbol for symbol in grammar.sparse_table[tmp][var][::-1]]})
-                    for production in reversed(grammar.sparse_table[tmp][var]):
-                        stack.put(production)
-            var = stack.get()
-            stack.put(var)
-        # print(grammar.sparse_table[token.split(":")[1][:-1]][var])
-
-        if var in grammar.terminals:
-            if tmp!=var:
-                print("error")
-            else:
-                stack.get()
 
 print("done")
-
-# print_sparse_tree(sparse_tree)
-
 
 
 
