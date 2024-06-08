@@ -273,18 +273,13 @@
 23 :T_Whitespace
 23 :T_Semicolon
 23 :T_Whitespace
-23 :43 j
-23 :T_Whitespace
-23 :T_ROp_LE
-23 :T_Whitespace
-23 :T_Decimal -5
 23 :T_Semicolon
 23 :T_Whitespace
-23 :44 j
+23 :43 j
 23 :T_Whitespace
 23 :T_Assign
 23 :T_Whitespace
-23 :45 j
+23 :44 j
 23 :T_Whitespace
 23 :T_AOp_MN
 23 :T_Whitespace
@@ -297,7 +292,7 @@
 24 :T_If
 24 :T_LP
 24 :T_LP
-24 :46 i
+24 :45 i
 24 :T_Whitespace
 24 :T_AOp_RM
 24 :T_Whitespace
@@ -311,7 +306,7 @@
 24 :T_LOp_OR
 24 :T_Whitespace
 24 :T_LP
-24 :47 i
+24 :46 i
 24 :T_Whitespace
 24 :T_AOp_RM
 24 :T_Whitespace
@@ -331,7 +326,7 @@
 26 :T_Whitespace
 26 :T_If
 26 :T_LP
-26 :48 j
+26 :47 j
 26 :T_Whitespace
 26 :T_ROp_G
 26 :T_Whitespace
@@ -339,7 +334,7 @@
 26 :T_Whitespace
 26 :T_LOp_AND
 26 :T_Whitespace
-26 :49 i
+26 :48 i
 26 :T_Whitespace
 26 :T_ROp_L
 26 :T_Whitespace
@@ -373,7 +368,7 @@
 32 :T_Whitespace
 32 :T_Char
 32 :T_Whitespace
-32 :52 back
+32 :51 back
 32 :T_Whitespace
 32 :T_Assign
 32 :T_Whitespace
@@ -383,7 +378,7 @@
 33 :T_Whitespace
 33 :T_Char
 33 :T_Whitespace
-33 :53 quote
+33 :52 quote
 33 :T_Whitespace
 33 :T_Assign
 33 :T_Whitespace
@@ -393,7 +388,7 @@
 34 :T_Whitespace
 34 :T_Int
 34 :T_Whitespace
-34 :54 _123
+34 :53 _123
 34 :T_Whitespace
 34 :T_Assign
 34 :T_Whitespace

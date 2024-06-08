@@ -236,13 +236,14 @@ for token in f:
 
         if panic_mode:
             if var in grammar.terminals:
-                print("an error has been occurred! deleting " ,var ," from stack")
+                print("arrived token is :" ,tmp," but it should be  " ,var ," you must forgot it!")
                 stack.get()
-                panic_mode=True
+                panic_mode=False
             else:
                 if tmp in grammar.follow[var]:
+                    print(tmp ,"   is in  follow of ",var)
                     stack.get()
-                    panic_mode=True
+                    panic_mode=False
 
         if not panic_mode:
 
@@ -251,16 +252,14 @@ for token in f:
                     stack.get()
                 else:
                     if grammar.sparse_table[tmp][var] =="Sync":
-                        panic_mode=True
                         number_of_problems+=1
-                        print("token is: ", tmp, "    top_stack is :", var , "number of token is :",count)
-                        print("error")
-                        print_sparse_tree(sparse_tree)
-                        break
+                        print("Sync token is: ", tmp, "-----top_stack is :", var , "-----line of error :",token.split(":")[0] )
+                        stack.get()
                     elif grammar.sparse_table[tmp][var] =="error":
                         number_of_problems+=1
-                        print("error ",count)
+                        print("error ",tmp,"  line is : ",token.split(":")[0] ,"finding sync token")
                         panic_mode=True
+                        break
                     else:
                         stack.get()
                         sparse_tree.append({var: [symbol for symbol in grammar.sparse_table[tmp][var][::-1]]})
@@ -273,9 +272,12 @@ for token in f:
             if var in grammar.terminals:
                 if tmp!=var:
                     number_of_problems+=1
-                    print("token is: ",tmp,"    top_stack is :",var)
-                    print("error")
+                    print("line :" ,token.split(":")[0],"  arrived token is :", tmp, " but it should be  ", var, " you must forgot it!" )
+                    stack.get()
+
                 else:
+                    if panic_mode ==True:
+                        print("sync token is :" ,var , "arrived token is : ",tmp)
                     stack.get()
 
 if number_of_problems==0:
