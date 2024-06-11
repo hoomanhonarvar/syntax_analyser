@@ -248,8 +248,12 @@ for token in f:
         if not panic_mode:
 
             while var not in grammar.terminals:
-                if var=="ε":
+                if var=="ε" :
+
                     stack.get()
+                    if tmp=="$":
+                        break
+
                 else:
                     if grammar.sparse_table[tmp][var] =="Sync":
                         number_of_problems+=1
@@ -279,7 +283,6 @@ for token in f:
                     if panic_mode ==True:
                         print("sync token is :" ,var , "arrived token is : ",tmp)
                     stack.get()
-
 if number_of_problems==0:
     print_sparse_tree(sparse_tree)
 
