@@ -72,13 +72,13 @@ with open(path,'r') as file:
                         if ord(buffer[buffer_index])>=49 and ord(buffer[buffer_index])<=57:
                             state = 3
                         #>
-                        if ord(buffer[buffer_index])==60:
+                        if ord(buffer[buffer_index])==62:
                             state = 4
                         #=
                         if ord(buffer[buffer_index])==61:
                             state = 5
                         #<
-                        if ord(buffer[buffer_index])==62:
+                        if ord(buffer[buffer_index])==60:
                             state = 6
                         #!
                         if ord(buffer[buffer_index])==33:
@@ -222,8 +222,7 @@ with open(path,'r') as file:
                             buffer_index+=1
                             state = 0
                         else:
-                            if ord(buffer[buffer_index]) == 32 or ord(buffer[buffer_index]) == 10 or ord(
-                                    buffer[buffer_index]) == 9:
+                            if ord(buffer[buffer_index]) == 32 or ord(buffer[buffer_index]) == 10 or ord( buffer[buffer_index]) == 9:
                                 token_txt.write(str(line)+ " :T_ROp_G\n")
                                 # print(line, " :T_ROp_G")
                                 state = 1

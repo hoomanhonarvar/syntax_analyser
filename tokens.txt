@@ -1,146 +1,98 @@
 1 :T_Int
 1 :T_Whitespace
 1 :12 main
-1 :T_Whitespace
 1 :T_LP
 1 :T_RP
 1 :T_LC
 1 :T_Whitespace
 2 :T_Whitespace
-2 :T_If
+2 :T_Int
 2 :T_Whitespace
-2 :T_LP
 2 :13 x
-2 :T_ROp_E
-2 :T_Decimal 1
-2 :T_RP
+2 :T_Semicolon
 2 :T_Whitespace
-2 :T_LC
-2 :T_Whitespace
+3 :T_Bool
 3 :T_Whitespace
-3 :14 y
-3 :T_Whitespace
-3 :T_Assign
-3 :T_Whitespace
-3 :T_Decimal 6
+3 :14 b
 3 :T_Semicolon
 3 :T_Whitespace
 4 :T_Whitespace
-4 :15 z
+4 :T_Int
 4 :T_Whitespace
-4 :T_Assign
-4 :T_Whitespace
-4 :T_Decimal 7
+4 :15 array
+4 :T_LB
+4 :T_Decimal 20
+4 :T_RB
 4 :T_Semicolon
 4 :T_Whitespace
 5 :T_Whitespace
-5 :T_RC
+5 :T_Bool
+5 :T_Whitespace
+5 :16 booleans
+5 :T_LB
+5 :T_Decimal 10
+5 :T_RB
+5 :T_Semicolon
 5 :T_Whitespace
 6 :T_Whitespace
-6 :T_If
+6 :T_Int
 6 :T_Whitespace
-6 :T_LP
-6 :16 y
-6 :T_ROp_GE
-6 :T_Decimal 2
-6 :T_Whitespace
-6 :T_LOp_AND
-6 :T_Whitespace
-6 :17 z
-6 :T_ROp_L
-6 :T_Decimal 7
-6 :T_Whitespace
-6 :T_LOp_OR
-6 :T_Whitespace
-6 :18 w
-6 :T_ROp_NE
-6 :T_Decimal 9
-6 :T_RP
-6 :T_Whitespace
-6 :T_LC
+6 :17 i
+6 :T_Assign
+6 :T_Decimal 5
+6 :T_Comma
+6 :18 j
+6 :T_Comma
+6 :19 k
+6 :T_Assign
+6 :T_Decimal 10
+6 :T_Semicolon
 6 :T_Whitespace
 7 :T_Whitespace
-7 :19 x
+7 :T_Bool
+7 :T_Whitespace
+7 :20 t
 7 :T_Assign
-7 :T_Decimal 4
-7 :T_AOp_PL
-7 :20 y
+7 :T_True
+7 :T_Whitespace
+7 :T_Comma
+7 :T_Whitespace
+7 :21 f
+7 :T_Assign
+7 :T_False
 7 :T_Semicolon
 7 :T_Whitespace
 8 :T_Whitespace
-8 :T_RC
+8 :T_Char
+8 :T_Whitespace
+8 :22 c1
+8 :T_Comma
+8 :T_Whitespace
+8 :23 c2
+8 :T_Assign
+8 :T_Character : 'p'
+8 :T_Semicolon
 8 :T_Whitespace
 9 :T_Whitespace
-9 :T_Else
+9 :T_Char
 9 :T_Whitespace
-9 :T_If
+9 :24 string
+9 :T_LB
+9 :T_Decimal 50
+9 :T_RB
+9 :T_Comma
 9 :T_Whitespace
-9 :T_LP
-9 :21 x
-9 :T_ROp_LE
-9 :T_Decimal 5
+9 :25 s
+9 :T_LB
+9 :T_Decimal 12
+9 :T_RB
 9 :T_Whitespace
-9 :T_LOp_OR
+9 :T_Assign
 9 :T_Whitespace
-9 :22 z
-9 :T_Decimal 7
-9 :T_Whitespace
-9 :T_LOp_AND
-9 :T_Whitespace
-9 :T_LOp_NOT
-9 :23 b
-9 :T_RP
-9 :T_Whitespace
-9 :T_LC
+9 :T_String  "PL Compiler"
+9 :T_Semicolon
 9 :T_Whitespace
 10 :T_Whitespace
-10 :24 b
-10 :T_Whitespace
-10 :T_Assign
-10 :T_Whitespace
-10 :T_True
-10 :T_Semicolon
-10 :T_Whitespace
 11 :T_Whitespace
-11 :T_RC
-11 :T_Whitespace
-11 :T_Else
-11 :T_Whitespace
-11 :T_If
-11 :T_Whitespace
-11 :T_LP
-11 :25 x
-11 :T_ROp_E
-11 :T_Decimal 3
-11 :T_RP
-11 :T_Whitespace
-11 :T_LC
-11 :T_Whitespace
-12 :T_Whitespace
-12 :26 array
-12 :T_LB
-12 :T_Decimal 4
-12 :T_RB
-12 :T_Whitespace
-12 :T_Assign
-12 :T_Whitespace
-12 :T_Decimal 43
-12 :T_Semicolon
-12 :T_Whitespace
-13 :T_Whitespace
-13 :T_RC
-13 :T_Whitespace
-13 :T_Else
-13 :T_Whitespace
-13 :T_LC
-13 :T_Whitespace
-14 :T_Whitespace
-14 :27 c
-14 :T_Whitespace
-14 :T_Assign
-14 :T_Whitespace
-14 :T_Character : 'q'
-14 :T_Semicolon
-14 :T_Whitespace
-15 :T_RC
+12 :T_RC
 end

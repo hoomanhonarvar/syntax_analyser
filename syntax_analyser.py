@@ -145,11 +145,11 @@ grammar = Grammar({
     "ParameterList": [["Parameter", "ParameterListPrime"], ["ε"]],
     "ParameterListPrime": [["T_Comma", "Parameter","ParameterListPrime"], ["ε"]],
     "Parameter": [["Type", "T_Id","ArraySpecifier"]],
-    "Declarations": [["Declaration","T_Semicolon", "Declarations"], ["ε"]],
-    "Declaration": [["Type", "T_Id","ArraySpecifier","AssignmentPrime"]],
+    "Declarations": [["T_Comma","T_Id","ArraySpecifier","AssignmentPrime", "Declarations"], ["ε"]],
+    "Declaration": [["Type", "T_Id","ArraySpecifier","AssignmentPrime","Declarations"]],
     "AssignmentPrime": [["ArraySpecifier","T_Assign","Expression"],["ε"]],
     "Type": [["T_Int"], ["T_Bool"],["T_Char"]],
-    "ArraySpecifier": [["T_LB", "Num","T_RB","ArraySpecifier"], ["ε"]],
+    "ArraySpecifier": [["T_LB", "Factor","T_RB","ArraySpecifier"], ["ε"]],
     "Num":[["T_Decimal"],["T_Hexadecimal"],["ε"]],
     "Statements": [["Statement", "Statements"], ["ε"]],
     "Statement": [["Declaration","T_Semicolon"],["T_Id","StatementPrime","T_Semicolon"], ["PrintStatement","T_Semicolon"],["Loop"],["IfStatement"],["Block"],["T_Continue","T_Semicolon"],["T_Break","T_Semicolon"],["T_Return","Expression","T_Semicolon"]],
@@ -160,8 +160,9 @@ grammar = Grammar({
     "ExpressionList": [["T_Comma", "Expression"]],
     "ExpressionsList":[["ExpressionList","ExpressionsList"],["ε"]],
     "Assignment_Declaration":[["Assignment"],["Declaration"]],
-    "Loop": [["T_For", "T_LP","Assignment_Declaration","T_Semicolon","Expression","T_Semicolon","Assignment","T_RP","Statement"]],
+    "Loop": [["T_For", "T_LP","Assignment_Declaration","T_Semicolon","Exp_Or_None","T_Semicolon","Assignment","T_RP","Statement"]],
     "IfStatement": [["T_If", "T_LP","Expression","T_RP","Statement","ElsePart"]],
+    "Exp_Or_None":[["Expression"],["ε"]],
     "ElsePart": [["T_Else", "Statement"], ["ε"]],
     "Block": [["T_LC", "Statements","T_RC"]],
     # "Condition": [["Expression","Condition_tmp"]],
@@ -195,7 +196,7 @@ grammar = Grammar({
       "ElsePart","Block","Condition","RO_Expression","T_ROp","ConditionPrime",
       "T_LOp","Expression","Term","TermPrime","Aop","Factor",
       "FunctionCall","ArgumentList","ArgumentListPrime","Condition_tmp","FunctionCallPrime","Assignment_Declaration","Operation"
-      ,"ExpressionPrime"}
+      ,"ExpressionPrime","Exp_Or_None"}
     ,"Program")
 grammar.calculate_first()
 # grammar.print_first()
@@ -283,6 +284,62 @@ for token in f:
                     if panic_mode ==True:
                         print("sync token is :" ,var , "arrived token is : ",tmp)
                     stack.get()
+while stack.qsize()!=0:
+    tmp="$"
+    var = stack.get()
+    stack.put(var)
+    if panic_mode:
+        if var in grammar.terminals:
+            print("arrived token is :", tmp, " but it should be  ", var, " you must forgot it!")
+            stack.get()
+            panic_mode = False
+        else:
+            for  follow in grammar.follow[var]:
+                print("arrived token is :", tmp, " but it should be  ", var, " you must forgot it!")
+                stack.get()
+                panic_mode = False
+
+    if not panic_mode:
+
+        while var not in grammar.terminals:
+            if var == "ε":
+
+                stack.get()
+                if tmp == "$":
+                    break
+
+            else:
+                if grammar.sparse_table[tmp][var] == "Sync":
+                    number_of_problems += 1
+                    print("Sync token is: ", tmp, "-----top_stack is :", var, "-----line of error :",
+                          token.split(":")[0])
+                    stack.get()
+                elif grammar.sparse_table[tmp][var] == "error":
+                    number_of_problems += 1
+                    print("error ", tmp, "  line is : ", token.split(":")[0], "finding sync token")
+                    panic_mode = True
+                    break
+                else:
+                    stack.get()
+                    sparse_tree.append({var: [symbol for symbol in grammar.sparse_table[tmp][var][::-1]]})
+                    for production in reversed(grammar.sparse_table[tmp][var]):
+                        stack.put(production)
+            var = stack.get()
+            stack.put(var)
+        # print(grammar.sparse_table[token.split(":")[1][:-1]][var])
+
+        if var in grammar.terminals:
+            if tmp != var:
+                number_of_problems += 1
+                print("line :", token.split(":")[0], "  arrived token is :", tmp, " but it should be  ", var,
+                      " you must forgot it!")
+                stack.get()
+
+            else:
+                if panic_mode == True:
+                    print("sync token is :", var, "arrived token is : ", tmp)
+                stack.get()
+
 if number_of_problems==0:
     print_sparse_tree(sparse_tree)
 

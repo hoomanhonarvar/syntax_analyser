@@ -1,15 +1,12 @@
-int main (){
- if (x==1) {
- y = 6;
- z = 7;
- }
- if (y<=2 && z>7 || w!=9) {
- x=4+y;
- }
- else if (x>=5 || z<7 && !b) {
- b = true;
- } else if (x==3) {
- array[4] = 43;
- } else {
- c = 'q';
+int main(){
+  int x;
+bool b;
+ int array[20];
+ bool booleans[10];
+ int i=5,j,k=10;
+ bool t=true , f=false;
+ char c1, c2='p';
+ char string[50], s[12] = "PL Compiler";
+
+
 }
