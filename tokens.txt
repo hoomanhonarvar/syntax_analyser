@@ -1,98 +1,290 @@
-1 :T_Int
-1 :T_Whitespace
-1 :12 main
-1 :T_LP
-1 :T_RP
-1 :T_LC
-1 :T_Whitespace
+1 :T_Comment
 2 :T_Whitespace
-2 :T_Int
-2 :T_Whitespace
-2 :13 x
-2 :T_Semicolon
-2 :T_Whitespace
-3 :T_Bool
-3 :T_Whitespace
-3 :14 b
-3 :T_Semicolon
-3 :T_Whitespace
+3 :T_Comment
+4 :T_Int
+4 :T_Whitespace
+4 :12 add
+4 :T_LP
+4 :T_Int
+4 :T_Whitespace
+4 :13 a
+4 :T_Comma
 4 :T_Whitespace
 4 :T_Int
 4 :T_Whitespace
-4 :15 array
-4 :T_LB
-4 :T_Decimal 20
-4 :T_RB
-4 :T_Semicolon
+4 :14 b
+4 :T_RP
+4 :T_Whitespace
+4 :T_LC
 4 :T_Whitespace
 5 :T_Whitespace
-5 :T_Bool
+5 :T_Return
 5 :T_Whitespace
-5 :16 booleans
-5 :T_LB
-5 :T_Decimal 10
-5 :T_RB
+5 :15 a
+5 :T_Whitespace
+5 :T_AOp_PL
+5 :T_Whitespace
+5 :16 b
 5 :T_Semicolon
 5 :T_Whitespace
-6 :T_Whitespace
-6 :T_Int
-6 :T_Whitespace
-6 :17 i
-6 :T_Assign
-6 :T_Decimal 5
-6 :T_Comma
-6 :18 j
-6 :T_Comma
-6 :19 k
-6 :T_Assign
-6 :T_Decimal 10
-6 :T_Semicolon
+5 :T_Comment
+6 :T_RC
 6 :T_Whitespace
 7 :T_Whitespace
-7 :T_Bool
-7 :T_Whitespace
-7 :20 t
-7 :T_Assign
-7 :T_True
-7 :T_Whitespace
-7 :T_Comma
-7 :T_Whitespace
-7 :21 f
-7 :T_Assign
-7 :T_False
-7 :T_Semicolon
-7 :T_Whitespace
-8 :T_Whitespace
-8 :T_Char
-8 :T_Whitespace
-8 :22 c1
-8 :T_Comma
-8 :T_Whitespace
-8 :23 c2
-8 :T_Assign
-8 :T_Character : 'p'
-8 :T_Semicolon
-8 :T_Whitespace
+8 :T_Comment
+9 :T_Bool
 9 :T_Whitespace
-9 :T_Char
+9 :17 isPositive
+9 :T_LP
+9 :T_Int
 9 :T_Whitespace
-9 :24 string
-9 :T_LB
-9 :T_Decimal 50
-9 :T_RB
-9 :T_Comma
+9 :18 num
+9 :T_RP
 9 :T_Whitespace
-9 :25 s
-9 :T_LB
-9 :T_Decimal 12
-9 :T_RB
-9 :T_Whitespace
-9 :T_Assign
-9 :T_Whitespace
-9 :T_String  "PL Compiler"
-9 :T_Semicolon
+9 :T_LC
 9 :T_Whitespace
 10 :T_Whitespace
+10 :T_Return
+10 :T_Whitespace
+10 :19 num
+10 :T_Whitespace
+10 :T_ROp_G
+10 :T_Whitespace
+10 :T_Decimal 0
+10 :T_Whitespace
+10 :T_Semicolon
+10 :T_Whitespace
+11 :T_RC
 11 :T_Whitespace
-12 :T_RC
+12 :T_Whitespace
+13 :T_Comment
+14 :T_Int
+14 :T_Whitespace
+14 :20 main
+14 :T_LP
+14 :T_RP
+14 :T_Whitespace
+14 :T_LC
+14 :T_Whitespace
+15 :T_Whitespace
+15 :T_Comment
+16 :T_Whitespace
+16 :T_Int
+16 :T_Whitespace
+16 :21 x
+16 :T_Whitespace
+16 :T_Assign
+16 :T_Whitespace
+16 :T_Decimal 10
+16 :T_Semicolon
+16 :T_Whitespace
+17 :T_Whitespace
+17 :T_Int
+17 :T_Whitespace
+17 :22 y
+17 :T_Whitespace
+17 :T_Assign
+17 :T_Whitespace
+17 :T_Decimal 20
+17 :T_Semicolon
+17 :T_Whitespace
+18 :T_Whitespace
+18 :T_Int
+18 :T_Whitespace
+18 :23 z
+18 :T_Whitespace
+18 :T_Assign
+18 :T_Whitespace
+18 :24 x
+18 :T_Whitespace
+18 :T_AOp_PL
+18 :T_Whitespace
+18 :25 y
+18 :T_Semicolon
+18 :T_Whitespace
+18 :T_Comment
+19 :T_Whitespace
+20 :T_Whitespace
+20 :T_Comment
+21 :T_Whitespace
+21 :T_Bool
+21 :T_Whitespace
+21 :26 flag
+21 :T_Whitespace
+21 :T_Assign
+21 :T_Whitespace
+21 :T_True
+21 :T_Semicolon
+21 :T_Whitespace
+22 :T_Whitespace
+23 :T_Whitespace
+23 :T_Comment
+24 :T_Whitespace
+24 :T_If
+24 :T_Whitespace
+24 :T_LP
+24 :27 x
+24 :T_Whitespace
+24 :T_ROp_G
+24 :T_Whitespace
+24 :28 y
+24 :T_RP
+24 :T_Whitespace
+24 :T_LC
+24 :T_Whitespace
+25 :T_Whitespace
+25 :T_Print
+25 :T_LP
+25 :T_String  "x is greater than y"
+25 :T_RP
+25 :T_Semicolon
+25 :T_Whitespace
+26 :T_Whitespace
+26 :T_RC
+26 :T_Whitespace
+26 :T_Else
+26 :T_Whitespace
+26 :T_LC
+26 :T_Whitespace
+27 :T_Whitespace
+27 :T_Print
+27 :T_LP
+27 :T_String  "x is not greater than y"
+27 :T_RP
+27 :T_Semicolon
+27 :T_Whitespace
+28 :T_Whitespace
+28 :T_RC
+28 :T_Whitespace
+29 :T_Whitespace
+30 :T_Whitespace
+30 :T_Comment
+31 :T_Whitespace
+31 :T_For
+31 :T_Whitespace
+31 :T_LP
+31 :T_Int
+31 :T_Whitespace
+31 :31 i
+31 :T_Whitespace
+31 :T_Assign
+31 :T_Whitespace
+31 :T_Decimal 0
+31 :T_Whitespace
+31 :T_Semicolon
+31 :T_Whitespace
+31 :32 i
+31 :T_Whitespace
+31 :T_ROp_L
+31 :T_Whitespace
+31 :T_Decimal 10
+31 :T_Semicolon
+31 :T_Whitespace
+31 :33 i
+31 :T_Whitespace
+31 :T_Assign
+31 :T_Whitespace
+31 :34 i
+31 :T_Whitespace
+31 :T_AOp_PL
+31 :T_Whitespace
+31 :T_Decimal 1
+31 :T_RP
+31 :T_Whitespace
+31 :T_LC
+31 :T_Whitespace
+32 :T_Whitespace
+32 :35 x
+32 :T_Whitespace
+32 :T_Assign
+32 :T_Whitespace
+32 :36 x
+32 :T_Whitespace
+32 :T_AOp_PL
+32 :T_Whitespace
+32 :37 i
+32 :T_Semicolon
+32 :T_Whitespace
+33 :T_Whitespace
+33 :T_If
+33 :T_Whitespace
+33 :T_LP
+33 :38 isPositive
+33 :T_LP
+33 :39 x
+33 :T_RP
+33 :T_RP
+33 :T_Whitespace
+33 :T_LC
+33 :T_Whitespace
+34 :T_Whitespace
+34 :T_Print
+34 :T_LP
+34 :T_String  "x is positive"
+34 :T_RP
+34 :T_Semicolon
+34 :T_Whitespace
+35 :T_Whitespace
+35 :T_RC
+35 :T_Whitespace
+35 :T_Else
+35 :T_Whitespace
+35 :T_LC
+35 :T_Whitespace
+36 :T_Whitespace
+36 :T_Print
+36 :T_LP
+36 :T_String  "x is not positive"
+36 :T_RP
+36 :T_Semicolon
+36 :T_Whitespace
+37 :T_Whitespace
+37 :T_RC
+37 :T_Whitespace
+38 :T_Whitespace
+38 :T_RC
+38 :T_Whitespace
+39 :T_Whitespace
+40 :T_Whitespace
+41 :T_Whitespace
+41 :T_Int
+41 :T_Whitespace
+41 :42 nestedVar
+41 :T_Whitespace
+41 :T_Assign
+41 :T_Whitespace
+41 :T_Decimal 100
+41 :T_Semicolon
+41 :T_Whitespace
+42 :T_Whitespace
+42 :T_If
+42 :T_Whitespace
+42 :T_LP
+42 :43 nestedVar
+42 :T_Whitespace
+42 :T_ROp_G
+42 :T_Whitespace
+42 :T_Decimal 50
+42 :T_RP
+42 :T_Whitespace
+42 :T_LC
+42 :T_Whitespace
+43 :T_Whitespace
+43 :T_Print
+43 :T_LP
+43 :T_String  "Nested variable is large"
+43 :T_RP
+43 :T_Semicolon
+43 :T_Whitespace
+44 :T_Whitespace
+44 :T_RC
+44 :T_Whitespace
+45 :T_Whitespace
+46 :T_Whitespace
+46 :T_Return
+46 :T_Whitespace
+46 :45 z
+46 :T_Semicolon
+46 :T_Whitespace
+47 :T_RC
 end

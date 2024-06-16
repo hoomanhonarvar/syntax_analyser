@@ -1,12 +1,58 @@
-int main(){
-  int x;
-bool b;
- int array[20];
- bool booleans[10];
- int i=5,j,k=10;
- bool t=true , f=false;
- char c1, c2='p';
- char string[50], s[12] = "PL Compiler";
+// A function to test various aspects of the programming language
+bool test_function(int a, int b, bool c) {
+    if (c == true) {
+        // Calculate and print the sum of a and b
+        int _sum = a + b;
+        print("Sum: ", sum);
+    } else {
+        // Calculate and print the difference of a and b
+        int difference = a - b;
+        print("Difference: ", difference);
+    }
+}
 
+int main() {
+    // Initialize variables of different types
+    int _integer_var = 10;
+    char _char_var = 'A' ;
+    bool bool_var = true;
+    string_var = "Hello, world!";
 
+    // Print the values of variables
+    print("Integer variable: ", integer_var);
+    print("Double variable: ", double_var);
+    print("Character variable: ", char_var);
+    print("String variable: ", string_var);
+    print("Constant character pointer: ", const_char_ptr);
+
+    // Perform arithmetic operations
+    int _num1 = 20;
+    int _num2 = 5;
+    int _sum = num1 + num2;
+    int _difference = num1 - num2;
+    int _product = num1 * num2;
+    int _remainder = num1 % num2;
+    int _power = static_cast(pow(num1, 2));
+
+    // Print the results of arithmetic operations
+    print("Sum: ", sum);
+    print("Difference: ", difference);
+    print("Product: ", product);
+    print("Remainder: ", remainder);
+    print("Power: ", power);
+
+    // Test boolean conditions and loops
+    for (int i = 0 ; i < 10; ) {
+        if (i % 2 == 0 ) {
+            print( " is even.");
+        } else {
+            print( " is odd.");
+        }
+    }
+
+    // Test function calls with different arguments
+    test_function(5, 3, true);
+    test_function(10, 7, false);
+
+    return 0 ;
 }

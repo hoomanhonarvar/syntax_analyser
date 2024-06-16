@@ -11,18 +11,37 @@
 9,return,T_Return,keyword,0
 10,continue,T_Continue,keyword,0
 11,for,T_For,keyword,0
-12,main,T_Id,id,1
-13,x,T_Id,id,2
-14,b,T_Id,id,3
-15,array,T_Id,id,4
-16,booleans,T_Id,id,5
-17,i,T_Id,id,6
-18,j,T_Id,id,6
-19,k,T_Id,id,6
-20,t,T_Id,id,7
-21,f,T_Id,id,7
-22,c1,T_Id,id,8
-23,c2,T_Id,id,8
-24,string,T_Id,id,9
-25,s,T_Id,id,9
-26,"""PL Compiler""",T_String,String,9
+12,add,T_Id,id,4
+13,a,T_Id,id,4
+14,b,T_Id,id,4
+15,a,T_Id,id,5
+16,b,T_Id,id,5
+17,isPositive,T_Id,id,9
+18,num,T_Id,id,9
+19,num,T_Id,id,10
+20,main,T_Id,id,14
+21,x,T_Id,id,16
+22,y,T_Id,id,17
+23,z,T_Id,id,18
+24,x,T_Id,id,18
+25,y,T_Id,id,18
+26,flag,T_Id,id,21
+27,x,T_Id,id,24
+28,y,T_Id,id,24
+29,"""x is greater than y""",T_String,String,25
+30,"""x is not greater than y""",T_String,String,27
+31,i,T_Id,id,31
+32,i,T_Id,id,31
+33,i,T_Id,id,31
+34,i,T_Id,id,31
+35,x,T_Id,id,32
+36,x,T_Id,id,32
+37,i,T_Id,id,32
+38,isPositive,T_Id,id,33
+39,x,T_Id,id,33
+40,"""x is positive""",T_String,String,34
+41,"""x is not positive""",T_String,String,36
+42,nestedVar,T_Id,id,41
+43,nestedVar,T_Id,id,42
+44,"""Nested variable is large""",T_String,String,43
+45,z,T_Id,id,46

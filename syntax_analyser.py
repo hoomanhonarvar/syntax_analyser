@@ -1,21 +1,7 @@
 import pandas as pd
 import numpy as np
 from queue import LifoQueue
-
-
-def print_sparse_tree(sparse_tree):
-    def print_node(node, indent):
-        if isinstance(node, str):  # Check if the node is a terminal symbol
-            print("  " * indent + node)  # Print terminal symbol
-        else:
-            symbol, children = next(iter(node.items()))
-            print("  " * indent + symbol)  # Print non-terminal symbol
-            for child in children:
-                print_node(child, indent + 1)  # Recursively print children
-
-    for node in sparse_tree:
-
-        print_node(node, 0)
+from nutree import Tree, Node
 class Grammar:
   def __init__(self, productions, terminals, non_terminals,start_variable):
     self.productions = productions
@@ -209,14 +195,26 @@ f=open("tokens.txt","r")
 stack=LifoQueue()
 stack.put("$")
 stack.put(grammar.start_variable)
-sparse_tree=[]
+sparse_tree=Tree("Sparse Tree")
 panic_mode=False
 count=0
 number_of_problems=0
-for token in f:
-    count += 1
+new_token=True
+token=""
+sparse_tree.add("Program")
+node=""
+while True:
+
+# for token in f:
+    if new_token==True:
+        token=f.readline()
+        count += 1
+    if len(token)==0:
+        break
+
     var = stack.get()
     stack.put(var)
+
     if token=="end":
         tmp="$"
     else:
@@ -237,7 +235,8 @@ for token in f:
 
         if panic_mode:
             if var in grammar.terminals:
-                print("arrived token is :" ,tmp," but it should be  " ,var ," you must forgot it!")
+                print("line :", token.split(":")[0], "  arrived token is :", tmp, " but it should be  ", var,
+                      " you must forgot it!")
                 stack.get()
                 panic_mode=False
             else:
@@ -245,10 +244,14 @@ for token in f:
                     print(tmp ,"   is in  follow of ",var)
                     stack.get()
                     panic_mode=False
+            new_token = True
 
         if not panic_mode:
 
             while var not in grammar.terminals:
+                # print("hello")
+                # sparse_tree.print()
+                # print()
                 if var=="ε" :
 
                     stack.get()
@@ -258,18 +261,21 @@ for token in f:
                 else:
                     if grammar.sparse_table[tmp][var] =="Sync":
                         number_of_problems+=1
-                        print("Sync token is: ", tmp, "-----top_stack is :", var , "-----line of error :",token.split(":")[0] )
+                        print("line :",token.split(":")[0],"  Sync token is: ", tmp, "-----top_stack is :", var  )
                         stack.get()
                     elif grammar.sparse_table[tmp][var] =="error":
                         number_of_problems+=1
-                        print("error ",tmp,"  line is : ",token.split(":")[0] ,"finding sync token")
+                        print("line :",token.split(":")[0],"  error ",tmp ,"finding sync token")
                         panic_mode=True
                         break
                     else:
                         stack.get()
-                        sparse_tree.append({var: [symbol for symbol in grammar.sparse_table[tmp][var][::-1]]})
+                        node=sparse_tree.find_all(var)[-1]
+                        # node = sparse_tree[var]
                         for production in reversed(grammar.sparse_table[tmp][var]):
                             stack.put(production)
+                            node.add(production)
+                    new_token = True
                 var = stack.get()
                 stack.put(var)
             # print(grammar.sparse_table[token.split(":")[1][:-1]][var])
@@ -279,23 +285,46 @@ for token in f:
                     number_of_problems+=1
                     print("line :" ,token.split(":")[0],"  arrived token is :", tmp, " but it should be  ", var, " you must forgot it!" )
                     stack.get()
+                    new_token=False
 
                 else:
                     if panic_mode ==True:
-                        print("sync token is :" ,var , "arrived token is : ",tmp)
+                        print("line :",token.split(":")[0],"sync token is :" ,var , "arrived token is : ",tmp)
                     stack.get()
+                    new_token=True
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+panic_mode=False
 while stack.qsize()!=0:
     tmp="$"
     var = stack.get()
     stack.put(var)
     if panic_mode:
         if var in grammar.terminals:
-            print("arrived token is :", tmp, " but it should be  ", var, " you must forgot it!")
+            print("line :", token.split(":")[0], "  arrived token is :", tmp, " but it should be  ", var,
+                  " you must forgot it!")
             stack.get()
             panic_mode = False
         else:
             for  follow in grammar.follow[var]:
-                print("arrived token is :", tmp, " but it should be  ", var, " you must forgot it!")
+                print("line :", token.split(":")[0], "  arrived token is :", tmp, " but it should be  ", var,
+                      " you must forgot it!")
                 stack.get()
                 panic_mode = False
 
@@ -321,9 +350,10 @@ while stack.qsize()!=0:
                     break
                 else:
                     stack.get()
-                    sparse_tree.append({var: [symbol for symbol in grammar.sparse_table[tmp][var][::-1]]})
+                    node=sparse_tree.add[var]
                     for production in reversed(grammar.sparse_table[tmp][var]):
                         stack.put(production)
+                        node.add(production)
             var = stack.get()
             stack.put(var)
         # print(grammar.sparse_table[token.split(":")[1][:-1]][var])
@@ -341,8 +371,7 @@ while stack.qsize()!=0:
                 stack.get()
 
 if number_of_problems==0:
-    print_sparse_tree(sparse_tree)
-
+    sparse_tree.print()
 
 
 
